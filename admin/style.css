@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #FFEAC5; /* cream lembut */
+    color: #603F26;
+    padding: 30px;
+}
+
+h2 {
+    color: #603F26;
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block;
+    background: #6C4E31;
+    color: #FFEAC5;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+a:hover {
+    background: #603F26;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFDBB5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(96,63,38,0.15);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #E6C9A8;
+}
+
+table th {
+    background: #6C4E31;
+    color: #FFEAC5;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background: #FFEAC5;
+}
