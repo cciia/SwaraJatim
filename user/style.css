@@ -1,0 +1,531 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: rgba(139, 69, 19, 0.9);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-brand h2 {
+  color: #f4e4bc;
+  font-weight: 600;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  color: #f4e4bc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200") center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #8b4513;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Galeri Section */
+.galeri {
+  padding: 5rem 0;
+  background: #f4e4bc;
+}
+
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.galeri-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.galeri-card:hover {
+  transform: translateY(-10px);
+}
+
+.galeri-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.galeri-card h3 {
+  padding: 1.5rem;
+  text-align: center;
+  color: #8b4513;
+  font-weight: 600;
+}
+
+/* AI Assistant Section */
+.ai-assistant {
+  padding: 5rem 0;
+  background: #8b4513;
+  color: white;
+}
+
+.ai-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.ai-text h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f4e4bc;
+}
+
+.ai-text p {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.ai-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #f4e4bc;
+  color: #8b4513;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #f4e4bc;
+  border: 2px solid #f4e4bc;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chat-interface {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.chat-header {
+  background: #4285f4;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.chat-body {
+  padding: 2rem;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+/* Kuliner Section */
+.kuliner {
+  padding: 5rem 0;
+  background: #f4e4bc;
+}
+
+.kuliner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.kuliner-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.kuliner-card:hover {
+  transform: translateY(-5px);
+}
+
+.kuliner-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.kuliner-card h4 {
+  padding: 1rem 0.5rem 0.5rem;
+  color: #8b4513;
+  font-weight: 600;
+}
+
+.kuliner-card p {
+  padding: 0 0.5rem 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Pakaian dan Batik Section */
+.pakaian-batik {
+  padding: 5rem 0;
+  background: white;
+}
+
+.pakaian-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.pakaian-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.pakaian-card:hover {
+  transform: translateY(-5px);
+}
+
+.pakaian-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.pakaian-card h4 {
+  padding: 1rem 0.5rem 0.5rem;
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pakaian-card p {
+  padding: 0 0.5rem 1rem;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Tradisi Section */
+.tradisi {
+  padding: 5rem 0;
+  background: #f4e4bc;
+}
+
+.tradisi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.tradisi-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.tradisi-card:hover {
+  transform: translateY(-5px);
+}
+
+.tradisi-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.tradisi-card h4 {
+  padding: 1rem 0.5rem 0.5rem;
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tradisi-card p {
+  padding: 0 0.5rem 1rem;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Artikel Budaya Section */
+.artikel-budaya {
+  padding: 5rem 0;
+  background: white;
+}
+
+.artikel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.artikel-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.artikel-card:hover {
+  transform: translateY(-5px);
+}
+
+.artikel-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.artikel-content {
+  padding: 1.5rem;
+}
+
+.artikel-tag {
+  background: #8b4513;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.artikel-content h4 {
+  margin: 1rem 0 0.5rem;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.artikel-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.read-more {
+  color: #8b4513;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background: #2c1810;
+  color: #f4e4bc;
+  padding: 3rem 0 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  margin-bottom: 1rem;
+  color: #f4e4bc;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #f4e4bc;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  font-size: 1.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+  color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .ai-content {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .navbar {
+    padding: 1rem;
+  }
+
+  .ai-buttons {
+    flex-direction: column;
+  }
+}
