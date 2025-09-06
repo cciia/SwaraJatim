@@ -13,20 +13,37 @@
 
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f1e8;
+            background-color: #FFEAC5;
             color: #333;
             line-height: 1.6;
         }
 
         /* Header */
         .header {
-            background-color: rgba(139, 69, 19, 0.9);
+            background-color: #FFEAC5; /* cream */
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: background-color 0.5s, color 0.5s; /* biar smooth */
         }
+
+        .header .logo,
+        .header .nav-menu a {
+            color: black;
+            transition: color 0.5s; /* biar font juga smooth */
+        }
+
+        /* Header setelah di-scroll */
+        .header.scrolled {
+            background-color: rgba(223, 205, 172, 0.93); /* cream tapi agak gelap */
+        }
+
+        .header.scrolled .logo,
+        .header.scrolled .nav-menu a {
+            color: black; /* tetap hitam biar kontras */
+        }   
 
         .nav-container {
             max-width: 1200px;
@@ -62,7 +79,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%201.png-EMcnnKFMHY9egxz06xE7Rh0aLrtNC2.jpeg');
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(105, 105, 105, 0.3)), url('../images/background.jpeg') no-repeat center center/cover;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -73,13 +90,14 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #000000;
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
@@ -104,32 +122,39 @@
         /* Gallery Section */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .gallery-card {
-            background: white;
-            border-radius: 10px;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-5px);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;              /* aktifin flexbox */
+            justify-content: center;    /* center horizontal */
+            align-items: center;
         }
 
         .gallery-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            display: block;
+            border-radius: 16px;
         }
 
-        .gallery-card h3 {
-            padding: 1rem;
-            color: #8b4513;
+        .gallery-card .gallery-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff; /* biar kontras */
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+            margin: 0;
+            width: 100%;
             text-align: center;
         }
 
@@ -216,101 +241,114 @@
             cursor: pointer;
         }
 
-        /* Content Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        /* Container scroll horizontal untuk semua kategori */
+        .section-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto; /* scroll horizontal */
+            padding-bottom: 10px;
+            scroll-behavior: smooth;
         }
 
-        .content-card {
-            background: white;
-            border-radius: 10px;
+        /* Hapus scrollbar default di beberapa browser */
+        .section-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .section-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+
+        /* Card universal untuk semua kategori */
+        .section-card {
+            flex: 0 0 auto; /* biar ukurannya tetap */
+            width: 250px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: black;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: transform 0.3s;
         }
 
-        .content-card:hover {
+        .section-card:hover {
             transform: translateY(-5px);
         }
 
-        .content-card img {
+        .section-card img {
             width: 100%;
-            height: 180px;
+            height: 150px;
             object-fit: cover;
         }
 
-        .card-content {
-            padding: 1rem;
-        }
-
-        .card-content h4 {
-            color: #8b4513;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-content p {
-            font-size: 0.9rem;
-            color: #666;
+        .section-card h3 {
+            padding: 10px;
+            font-size: 1.1rem;
+            text-align: center;
         }
 
         /* Article Cards */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+        .artikel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-        .article-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+.artikel-card {
+    background-color: #fff;
+    border: 1px solid #d6a66f; /* border tipis */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+}
 
-        .article-card:hover {
-            transform: translateY(-8px);
-        }
+.artikel-card:hover {
+    transform: translateY(-5px);
+}
 
-        .article-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.artikel-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
 
-        .article-content {
-            padding: 1.5rem;
-        }
+.artikel-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px;
+}
 
-        .article-content h4 {
-            color: #8b4513;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
+.artikel-summary {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 10px 10px;
+    flex-grow: 1;
+}
 
-        .article-content p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+.artikel-date {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 0 10px 10px;
+}
 
-        .read-more {
-            background: #8b4513;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            display: inline-block;
-            transition: background 0.3s;
-        }
+.btn-lihat {
+    display: inline-block;
+    margin: 10px;
+    padding: 6px 12px;
+    background-color: #d6783c;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+}
 
-        .read-more:hover {
-            background: #a0522d;
-        }
+.btn-lihat:hover {
+    background-color: #b55a1e;
+}
 
         /* Footer */
         .footer {
@@ -409,7 +447,7 @@
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#galeri">Galeri</a></li>
-                    <li><a href="#gemini">Gemini</a></li>
+                    <li><a href="#ai-assistant">Gemini</a></li>
                     <li><a href="#artikel">Artikel</a></li>
                 </ul>
             </nav>
@@ -428,23 +466,42 @@
     <section id="galeri" class="section">
         <h2 class="section-title">Galeri</h2>
         <div class="gallery-grid">
-            <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Kuliner">
-                <h3>Galeri Kuliner</h3>
-            </div>
-            <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Pakaian">
-                <h3>Galeri Pakaian</h3>
-            </div>
-            <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Kuliner">
-                <h3>Galeri Kuliner</h3>
-            </div>
+            <?php
+            include "../koneksi.php";
+
+            // mapping kategori -> judul custom
+            $kategori = [
+                2 => "Kuliner",
+                3 => "Pakaian",
+                4 => "Tradisi"
+            ];
+
+            foreach ($kategori as $cat_id => $judul_custom) {
+                $sql = "SELECT * FROM articles 
+                        WHERE culture_type_id = $cat_id 
+                        ORDER BY id DESC 
+                        LIMIT 1";
+                $result = mysqli_query($koneksi, $sql);
+
+                if ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <a href="kategori.php?id=<?php echo $cat_id; ?>" class="gallery-link">
+                    <div class="gallery-card">
+                        <img src="../uplouds/<?php echo $row['image']; ?>" alt="<?php echo $judul_custom; ?>">
+                        <div class="overlay">
+                        <h3 class="gallery-title"><?php echo 'Galeri ' . $judul_custom; ?></h3>
+                        </div>
+                    </div>
+                    </a>
+            <?php
+                }
+            }
+            ?>
         </div>
     </section>
 
     <!-- AI Assistant Section -->
-    <section class="section">
+    <section id="ai-assistant" class="section">
         <div class="ai-assistant">
             <div class="ai-content">
                 <h3>AI Cultural Assistant</h3>
@@ -455,7 +512,7 @@
                 </div>
             </div>
             <div class="chat-interface">
-                <div class="chat-header">🤖 Gemini</div>
+                <div class="chat-header">🤖 Swara Jatim</div>
                 <div style="flex: 1; background: #f9f9f9; border-radius: 5px; margin-bottom: 1rem;"></div>
                 <div class="chat-input">
                     <input type="text" placeholder="Ketik pesan...">
@@ -467,167 +524,64 @@
     </section>
 
     <!-- Kuliner Section -->
-    <section class="section">
-        <h2 class="section-title">Kuliner</h2>
-        <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Nasi Pecel Madiun">
-                <div class="card-content">
-                    <h4>Nasi Pecel Madiun</h4>
-                    <p>Madiun</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Rawon">
-                <div class="card-content">
-                    <h4>Rawon</h4>
-                    <p>Surabaya</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Sego Cawuk">
-                <div class="card-content">
-                    <h4>Sego Cawuk</h4>
-                    <p>Jombang</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Rujak Cingur">
-                <div class="card-content">
-                    <h4>Rujak Cingur</h4>
-                    <p>Surabaya</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Soto Lamongan">
-                <div class="card-content">
-                    <h4>Soto Lamongan</h4>
-                    <p>Lamongan</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php
+        include "../koneksi.php";
 
-    <!-- Pakaian dan Batik Section -->
-    <section class="section">
-        <h2 class="section-title">Pakaian dan Batik</h2>
-        <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Adat Ponorogo">
-                <div class="card-content">
-                    <h4>Baju Adat Ponorogo</h4>
-                    <p>Baju Malang</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Jilbeng Thukul">
-                <div class="card-content">
-                    <h4>Baju Jilbeng Thukul</h4>
-                    <p>Baju Osing Banyuwangi</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Cak dan Ning">
-                <div class="card-content">
-                    <h4>Baju Cak dan Ning</h4>
-                    <p>Baju Jawa Timur</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Adat Trenggalek">
-                <div class="card-content">
-                    <h4>Baju Adat Trenggalek</h4>
-                    <p>Baju Trenggalek</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Batik Sido Asih">
-                <div class="card-content">
-                    <h4>Batik Sido Asih</h4>
-                    <p>Batik</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // daftar kategori
+        $kategori = [
+            2 => "Kuliner",
+            3 => "Pakaian",
+            4 => "Tradisi"
+        ];
 
-    <!-- Tradisi Section -->
-    <section class="section">
-        <h2 class="section-title">Tradisi</h2>
-        <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Tari Kuda Lumping">
-                <div class="card-content">
-                    <h4>Tari Kuda Lumping</h4>
-                    <p>Tarian di mana penari menunggangi kuda tiruan yang terbuat dari anyaman bambu</p>
+        foreach ($kategori as $cat_id => $nama_kategori) {
+        ?>
+            <section id="<?php echo strtolower($nama_kategori); ?>" class="section">
+                <h2 class="section-title"><?php echo $nama_kategori; ?></h2>
+                <div class="section-scroll">
+                    <?php
+                    $sql = "SELECT * FROM articles 
+                            WHERE culture_type_id = $cat_id 
+                            ORDER BY id DESC";
+                    $result = mysqli_query($koneksi, $sql);
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <a href="artikel.php?id=<?php echo $row['id']; ?>" class="section-card">
+                            <img src="../uplouds/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>">
+                            <h3><?php echo $row['title']; ?></h3>
+                        </a>
+                    <?php
+                    }
+                    ?>
                 </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Seni Ludruk">
-                <div class="card-content">
-                    <h4>Seni Ludruk</h4>
-                    <p>Seni teater tradisional dari Jawa Timur yang menggabungkan dialog, tarian, dan musik</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Wayang Kulit">
-                <div class="card-content">
-                    <h4>Wayang Kulit</h4>
-                    <p>Pertunjukan wayang kulit yang menceritakan kisah-kisah dari Ramayana dan Mahabharata</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Reog">
-                <div class="card-content">
-                    <h4>Reog</h4>
-                    <p>Kesenian tradisional yang berasal dari Ponorogo dengan topeng singa barong yang besar</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Kuda Lumping">
-                <div class="card-content">
-                    <h4>Kuda Lumping</h4>
-                    <p>Kesenian rakyat tradisional Jawa yang menggunakan properti kuda tiruan dari anyaman bambu</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        <?php
+        }
+        ?>
 
     <!-- Artikel Budaya Section -->
-    <section id="artikel" class="section">
+    <section id="artikel" class="section" style="background-color:#FFEAC5; padding:40px 20px;">
         <h2 class="section-title">Artikel Budaya</h2>
-        <div class="article-grid">
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Budaya Jawa Timur">
-                <div class="article-content">
-                    <h4>5 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
-                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
+        <div class="artikel-grid">
+            <?php
+            include "../koneksi.php";
+
+            $sql = "SELECT * FROM articles ORDER BY id DESC";
+            $result = mysqli_query($koneksi, $sql);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <div class="artikel-card">
+                    <img src="../uplouds/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>">
+                    <h3 class="artikel-title"><?php echo $row['title']; ?></h3>
+                    <p class="artikel-summary"><?php echo substr($row['content'],0,120); ?>...</p>
+                    <p class="artikel-date"><?php echo $row['created_at']; ?></p>
+                    <a href="artikel.php?id=<?php echo $row['id']; ?>" class="btn-lihat">Lihat</a>
                 </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Wisata Tradisional">
-                <div class="article-content">
-                    <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
-                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Pelestarian Budaya">
-                <div class="article-content">
-                    <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
-                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Kearifan Lokal">
-                <div class="article-content">
-                    <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
-                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
+            <?php
+            }
+            ?>
         </div>
     </section>
 
@@ -668,5 +622,15 @@
             <p>&copy; 2025 Swara Jatim Tiga Cahya Diksaland</p>
         </div>
     </footer>
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
