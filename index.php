@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
             background-color: #f5f1e8;
             color: #333;
             line-height: 1.6;
+            background-color: #FFEAC5;
         }
 
         /* Header */
@@ -43,6 +45,12 @@
             font-weight: bold;
         }
 
+        .logo a {
+            color: inherit;          /* Warna mengikuti parent (tetap putih) */
+            text-decoration: none;   /* Hilangkan underline */
+            cursor: pointer;        
+        }
+
         .nav-menu {
             display: flex;
             list-style: none;
@@ -62,7 +70,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('uploads/background.jpeg');
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('uploads/background.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -73,14 +81,15 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #000000;
         }
 
         .hero-content p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         /* Section Styles */
@@ -94,43 +103,55 @@
         }
 
         .section-title {
+            position: relative;
             text-align: center;
             font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 3rem;
+            color: #994D1C;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin: 3rem 1rem;
+            border-bottom: 2px solid #d2691e;
         }
 
         /* Gallery Section */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .gallery-card {
-            background: white;
-            border-radius: 10px;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-5px);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            /* aktifin flexbox */
+            justify-content: center;
+            /* center horizontal */
+            align-items: center;
         }
 
         .gallery-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            display: block;
+            border-radius: 16px;
         }
 
-        .gallery-card h3 {
-            padding: 1rem;
-            color: #8b4513;
+        .gallery-card .gallery-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            /* biar kontras */
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin: 0;
+            width: 100%;
             text-align: center;
         }
 
@@ -164,7 +185,7 @@
         }
 
         .ai-btn {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             border: 1px solid white;
             padding: 0.8rem 1.5rem;
@@ -174,7 +195,7 @@
         }
 
         .ai-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .chat-interface {
@@ -230,10 +251,10 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
             min-width: 250px;
-            flex: 0 0 auto; 
+            flex: 0 0 auto;
         }
 
         .content-card:hover {
@@ -263,7 +284,7 @@
         /* Article Cards */
         .article-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -271,7 +292,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
 
@@ -338,7 +359,8 @@
             margin-bottom: 1rem;
         }
 
-        .footer-section p, .footer-section a {
+        .footer-section p,
+        .footer-section a {
             color: #ccc;
             text-decoration: none;
             margin-bottom: 0.5rem;
@@ -405,10 +427,11 @@
         }
     </style>
 </head>
+
 <body>
     <header class="header">
         <div class="nav-container">
-            <div class="logo">Swara Jatim</div>
+            <div class="logo"><a href="index.php">Swara Jatim</a></div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
@@ -430,18 +453,37 @@
     <section id="galeri" class="section">
         <h2 class="section-title">Galeri</h2>
         <div class="gallery-grid">
-            <div class="gallery-card">
-                <img src="uploads/krawu.jpeg" alt="Nasi Krawu Gresik">
-                <h3>Kuliner</h3>
-            </div>
-            <div class="gallery-card">
-                <img src="uploads/sidoarjo.jpg" alt="Batik Sidoarjo">
-                <h3>Pakaian dan Batik</h3>
-            </div>
-            <div class="gallery-card">
-                <img src="uploads/reog.jpg" alt="Reog Ponorogo">
-                <h3>Kesenian</h3>
-            </div>
+            <?php
+            include "koneksi.php";
+
+            // mapping kategori -> judul custom
+            $kategori = [
+                2 => "Kuliner",
+                3 => "Pakaian",
+                4 => "Tradisi"
+            ];
+
+            foreach ($kategori as $cat_id => $judul_custom) {
+                $sql = "SELECT * FROM articles 
+                        WHERE culture_type_id = $cat_id 
+                        ORDER BY id DESC 
+                        LIMIT 1";
+                $result = mysqli_query($koneksi, $sql);
+
+                if ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <a href="galeri.php?id=<?php echo $cat_id; ?>" class="gallery-link">
+                        <div class="gallery-card">
+                            <img src="uploads/<?php echo $row['image']; ?>" alt="<?php echo $judul_custom; ?>">
+                            <div class="overlay">
+                                <h3 class="gallery-title"><?php echo 'Galeri ' . $judul_custom; ?></h3>
+                            </div>
+                        </div>
+                    </a>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </section>
 
@@ -449,7 +491,9 @@
         <div class="ai-assistant">
             <div class="ai-content">
                 <h3>AI Cultural Assistant</h3>
-                <p>Jelajahi budaya Jawa Timur dengan bantuan AI Cultural Assistant. Cukup tanyakan atau kirimkan minuman, dan dapatkan cerdas ini akan memberikan informasi, cerita, dan rekomendasi seputar seni, tradisi, dan budaya lokal.</p>
+                <p>Jelajahi budaya Jawa Timur dengan bantuan AI Cultural Assistant. Cukup tanyakan atau kirimkan
+                    minuman, dan dapatkan cerdas ini akan memberikan informasi, cerita, dan rekomendasi seputar seni,
+                    tradisi, dan budaya lokal.</p>
                 <div class="ai-buttons">
                     <button class="ai-btn">Menggali Budaya</button>
                     <button class="ai-btn">Menghubungkan Generasi</button>
@@ -555,35 +599,47 @@
         <h2 class="section-title">Artikel</h2>
         <div class="article-grid">
             <article class="article-card">
-                <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90" alt="Budaya Jawa Timur">
+                <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90"
+                    alt="Budaya Jawa Timur">
                 <div class="article-content">
                     <h4>6 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
-                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
-                    <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia" target="_blank" class="read-more">Baca Selengkapnya</a>
+                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga
+                        kuliner khas yang menggugah selera...</p>
+                    <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia"
+                        target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
             <article class="article-card">
-                <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2" alt="Wisata Tradisional">
+                <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2"
+                    alt="Wisata Tradisional">
                 <div class="article-content">
                     <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
-                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
-                    <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150" target="_blank" class="read-more">Baca Selengkapnya</a>
+                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai
+                        tradisi yang masih lestari...</p>
+                    <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150"
+                        target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
             <article class="article-card">
-                <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp" alt="Pelestarian Budaya">
+                <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp"
+                    alt="Pelestarian Budaya">
                 <div class="article-content">
                     <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
-                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
-                    <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7" target="_blank" class="read-more">Baca Selengkapnya</a>
+                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur
+                        tetap hidup di era modern...</p>
+                    <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7"
+                        target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
             <article class="article-card">
-                <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90" alt="Kearifan Lokal">
+                <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90"
+                    alt="Kearifan Lokal">
                 <div class="article-content">
                     <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
-                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
-                    <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda" target="_blank" class="read-more">Baca Selengkapnya</a>
+                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian
+                        hingga filosofi hidup...</p>
+                    <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda"
+                        target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
         </div>
@@ -594,7 +650,8 @@
             <div class="footer-section">
                 <h4>Swara Jatim</h4>
                 <p>Portal Budaya & Berita Jawa Timur</p>
-                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif dan edukatif untuk generasi mendatang.</p>
+                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif
+                    dan edukatif untuk generasi mendatang.</p>
             </div>
             <div class="footer-section">
                 <h4>Navigasi Cepat</h4>
@@ -629,7 +686,7 @@
     </footer>
 
     <script>
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const header = document.querySelector('.header');
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -639,4 +696,5 @@
         });
     </script>
 </body>
+
 </html>
