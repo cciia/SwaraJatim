@@ -18,6 +18,7 @@
             line-height: 1.6;
         }
 
+        /* Header */
         .header {
             background-color: rgba(139, 69, 19, 0.9);
             padding: 1rem 0;
@@ -58,6 +59,7 @@
             color: #f5f1e8;
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('uploads/background.jpeg');
@@ -81,12 +83,14 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
+        /* Section Styles */
         .section {
             padding: 4rem 0;
             max-width: 1200px;
             margin: 0 auto;
             padding-left: 2rem;
             padding-right: 2rem;
+            margin-bottom: 4rem;
         }
 
         .section-title {
@@ -98,6 +102,7 @@
             letter-spacing: 2px;
         }
 
+        /* Gallery Section */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -129,6 +134,7 @@
             text-align: center;
         }
 
+        /* AI Assistant Section */
         .ai-assistant {
             background: #8b4513;
             color: white;
@@ -211,6 +217,7 @@
             cursor: pointer;
         }
 
+        /* Content Grid */
         .content-grid {
             display: flex;
             gap: 1.5rem;
@@ -225,8 +232,8 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
-            min-width: 250px;  
-            flex: 0 0 auto;
+            min-width: 250px;
+            flex: 0 0 auto; 
         }
 
         .content-card:hover {
@@ -314,6 +321,7 @@
             background: #2c1810;
             color: white;
             padding: 3rem 0 1rem;
+            margin-top: 0;
         }
 
         .footer-content {
@@ -405,7 +413,7 @@
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#galeri">Galeri</a></li>
-                    <li><a href="#gemini">Gemini</a></li>
+                    <li><a href="#ai-assistant">Gemini</a></li>
                     <li><a href="#artikel">Artikel</a></li>
                 </ul>
             </nav>
@@ -437,9 +445,7 @@
         </div>
     </section>
 
-
-
-    <section class="section">
+    <section id="ai-assistant" class="section">
         <div class="ai-assistant">
             <div class="ai-content">
                 <h3>AI Cultural Assistant</h3>
@@ -450,7 +456,7 @@
                 </div>
             </div>
             <div class="chat-interface">
-                <div class="chat-header">🤖 Gemini</div>
+                <div class="chat-header">🤖 Swara Jatim</div>
                 <div style="flex: 1; background: #f9f9f9; border-radius: 5px; margin-bottom: 1rem;"></div>
                 <div class="chat-input">
                     <input type="text" placeholder="Ketik pesan...">
@@ -461,7 +467,7 @@
         </div>
     </section>
 
-   <section class="section">
+    <section class="section">
         <h2 class="section-title">Kuliner</h2>
         <div class="content-grid">
             <?php
@@ -477,7 +483,7 @@
             while ($row = mysqli_fetch_assoc($res)) {
                 echo "
                 <div class='content-card'>
-                    <img src='uploads/{$row['image']}' alt='{$row['title']}'>
+                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='180' width='250'>
                     <div class='card-content'>
                         <h4>{$row['title']}</h4>
                         <p>{$row['city_name']}</p>
@@ -488,7 +494,6 @@
             ?>
         </div>
     </section>
-
 
     <section class="section">
         <h2 class="section-title">Pakaian dan Batik</h2>
@@ -518,7 +523,6 @@
         </div>
     </section>
 
-
     <section class="section">
         <h2 class="section-title">Tradisi</h2>
         <div class="content-grid">
@@ -547,45 +551,43 @@
         </div>
     </section>
 
-
     <section id="artikel" class="section">
-    <h2 class="section-title">Artikel</h2>
-    <div class="article-grid">
-        <article class="article-card">
-            <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90" alt="Budaya Jawa Timur">
-            <div class="article-content">
-                <h4>6 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
-                <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
-                <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia" target="_blank" class="read-more">Baca Selengkapnya</a>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2" alt="Wisata Tradisional">
-            <div class="article-content">
-                <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
-                <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
-                <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150" target="_blank" class="read-more">Baca Selengkapnya</a>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp" alt="Pelestarian Budaya">
-            <div class="article-content">
-                <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
-                <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
-                <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7" target="_blank" class="read-more">Baca Selengkapnya</a>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90" alt="Kearifan Lokal">
-            <div class="article-content">
-                <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
-                <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
-                <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda" target="_blank" class="read-more">Baca Selengkapnya</a>
+        <h2 class="section-title">Artikel</h2>
+        <div class="article-grid">
+            <article class="article-card">
+                <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90" alt="Budaya Jawa Timur">
+                <div class="article-content">
+                    <h4>6 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
+                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
+                    <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia" target="_blank" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </article>
+            <article class="article-card">
+                <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2" alt="Wisata Tradisional">
+                <div class="article-content">
+                    <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
+                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
+                    <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150" target="_blank" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </article>
+            <article class="article-card">
+                <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp" alt="Pelestarian Budaya">
+                <div class="article-content">
+                    <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
+                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
+                    <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7" target="_blank" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </article>
+            <article class="article-card">
+                <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90" alt="Kearifan Lokal">
+                <div class="article-content">
+                    <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
+                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
+                    <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda" target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
         </div>
     </section>
-
 
     <footer class="footer">
         <div class="footer-content">
@@ -599,18 +601,20 @@
                 <a href="#home">Beranda</a>
                 <a href="#galeri">Galeri</a>
                 <a href="#artikel">Artikel</a>
-                <a href="#gemini">AI Assistant</a>
+                <a href="#ai-assistant">AI Assistant</a>
                 <a href="#kontak">Kontak</a>
             </div>
             <div class="footer-section">
                 <h4>Galeri Budaya</h4>
-                <a href="#">Galeri Makanan</a>
-                <a href="#">Galeri Pakaian</a>
-                <a href="#">Galeri Tradisi</a>
-                <a href="#">Galeri Makanan</a>
+                <a href="#">Kuliner</a>
+                <a href="#">Pakaian & Batik</a>
+                <a href="#">Kesenian</a>
+                <a href="#">Tradisi</a>
             </div>
             <div class="footer-section">
-                <h4>Media Sosial</h4>
+                <h4>Hubungi Kami</h4>
+                <p>Email: info@swarajatim.com</p>
+                <p>Telepon: (031) 123-4567</p>
                 <div class="social-links">
                     <a href="#" title="Facebook">f</a>
                     <a href="#" title="Twitter">t</a>
@@ -620,8 +624,19 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Swara Jatim</p>
+            <p>&copy; 2025 Swara Jatim. Semua hak cipta dilindungi.</p>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
