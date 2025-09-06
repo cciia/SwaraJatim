@@ -18,7 +18,6 @@
             line-height: 1.6;
         }
 
-        /* Header */
         .header {
             background-color: rgba(139, 69, 19, 0.9);
             padding: 1rem 0;
@@ -59,10 +58,9 @@
             color: #f5f1e8;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%201.png-EMcnnKFMHY9egxz06xE7Rh0aLrtNC2.jpeg');
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('uploads/background.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -83,7 +81,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* Section Styles */
         .section {
             padding: 4rem 0;
             max-width: 1200px;
@@ -101,7 +98,6 @@
             letter-spacing: 2px;
         }
 
-        /* Gallery Section */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -133,7 +129,6 @@
             text-align: center;
         }
 
-        /* AI Assistant Section */
         .ai-assistant {
             background: #8b4513;
             color: white;
@@ -216,12 +211,12 @@
             cursor: pointer;
         }
 
-        /* Content Grid */
         .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 10px;
+            scroll-behavior: smooth;
         }
 
         .content-card {
@@ -230,6 +225,8 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            min-width: 250px;  
+            flex: 0 0 auto;
         }
 
         .content-card:hover {
@@ -401,7 +398,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="nav-container">
             <div class="logo">Swara Jatim</div>
@@ -416,7 +412,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Swara Jatim</h1>
@@ -424,26 +419,26 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section id="galeri" class="section">
         <h2 class="section-title">Galeri</h2>
         <div class="gallery-grid">
             <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Kuliner">
-                <h3>Galeri Kuliner</h3>
+                <img src="uploads/krawu.jpeg" alt="Nasi Krawu Gresik">
+                <h3>Kuliner</h3>
             </div>
             <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Pakaian">
-                <h3>Galeri Pakaian</h3>
+                <img src="uploads/sidoarjo.jpg" alt="Batik Sidoarjo">
+                <h3>Pakaian dan Batik</h3>
             </div>
             <div class="gallery-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Galeri Kuliner">
-                <h3>Galeri Kuliner</h3>
+                <img src="uploads/reog.jpg" alt="Reog Ponorogo">
+                <h3>Kesenian</h3>
             </div>
         </div>
     </section>
 
-    <!-- AI Assistant Section -->
+
+
     <section class="section">
         <div class="ai-assistant">
             <div class="ai-content">
@@ -466,172 +461,132 @@
         </div>
     </section>
 
-    <!-- Kuliner Section -->
-    <section class="section">
+   <section class="section">
         <h2 class="section-title">Kuliner</h2>
         <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Nasi Pecel Madiun">
-                <div class="card-content">
-                    <h4>Nasi Pecel Madiun</h4>
-                    <p>Madiun</p>
+            <?php
+            include 'koneksi.php';
+            $res = mysqli_query($koneksi, "
+                SELECT a.*, c.name AS city_name 
+                FROM articles a
+                LEFT JOIN cities c ON a.city_id = c.id
+                WHERE a.culture_type_id = 2
+                ORDER BY a.created_at DESC
+            ");
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo "
+                <div class='content-card'>
+                    <img src='uploads/{$row['image']}' alt='{$row['title']}'>
+                    <div class='card-content'>
+                        <h4>{$row['title']}</h4>
+                        <p>{$row['city_name']}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Rawon">
-                <div class="card-content">
-                    <h4>Rawon</h4>
-                    <p>Surabaya</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Sego Cawuk">
-                <div class="card-content">
-                    <h4>Sego Cawuk</h4>
-                    <p>Jombang</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Rujak Cingur">
-                <div class="card-content">
-                    <h4>Rujak Cingur</h4>
-                    <p>Surabaya</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Soto Lamongan">
-                <div class="card-content">
-                    <h4>Soto Lamongan</h4>
-                    <p>Lamongan</p>
-                </div>
-            </div>
+                ";
+            }
+            ?>
         </div>
     </section>
 
-    <!-- Pakaian dan Batik Section -->
+
     <section class="section">
         <h2 class="section-title">Pakaian dan Batik</h2>
         <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Adat Ponorogo">
-                <div class="card-content">
-                    <h4>Baju Adat Ponorogo</h4>
-                    <p>Baju Malang</p>
+            <?php
+            include 'koneksi.php';
+            $res = mysqli_query($koneksi, "
+                SELECT a.*, c.name AS city_name 
+                FROM articles a
+                LEFT JOIN cities c ON a.city_id = c.id
+                WHERE a.culture_type_id = 3
+                ORDER BY a.created_at DESC
+            ");
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo "
+                <div class='content-card'>
+                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='180' width='250'>
+                    <div class='card-content'>
+                        <h4>{$row['title']}</h4>
+                        <p>{$row['city_name']}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Jilbeng Thukul">
-                <div class="card-content">
-                    <h4>Baju Jilbeng Thukul</h4>
-                    <p>Baju Osing Banyuwangi</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Cak dan Ning">
-                <div class="card-content">
-                    <h4>Baju Cak dan Ning</h4>
-                    <p>Baju Jawa Timur</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Baju Adat Trenggalek">
-                <div class="card-content">
-                    <h4>Baju Adat Trenggalek</h4>
-                    <p>Baju Trenggalek</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Batik Sido Asih">
-                <div class="card-content">
-                    <h4>Batik Sido Asih</h4>
-                    <p>Batik</p>
-                </div>
-            </div>
+                ";
+            }
+            ?>
         </div>
     </section>
 
-    <!-- Tradisi Section -->
+
     <section class="section">
         <h2 class="section-title">Tradisi</h2>
         <div class="content-grid">
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Tari Kuda Lumping">
-                <div class="card-content">
-                    <h4>Tari Kuda Lumping</h4>
-                    <p>Tarian di mana penari menunggangi kuda tiruan yang terbuat dari anyaman bambu</p>
+            <?php
+            include 'koneksi.php';
+            $res = mysqli_query($koneksi, "
+                SELECT a.*, c.name AS city_name 
+                FROM articles a
+                LEFT JOIN cities c ON a.city_id = c.id
+                WHERE a.culture_type_id = 4
+                ORDER BY a.created_at DESC
+            ");
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo "
+                <div class='content-card'>
+                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='180' width='250'>
+                    <div class='card-content'>
+                        <h4>{$row['title']}</h4>
+                        <p>{$row['city_name']}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Seni Ludruk">
-                <div class="card-content">
-                    <h4>Seni Ludruk</h4>
-                    <p>Seni teater tradisional dari Jawa Timur yang menggabungkan dialog, tarian, dan musik</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Wayang Kulit">
-                <div class="card-content">
-                    <h4>Wayang Kulit</h4>
-                    <p>Pertunjukan wayang kulit yang menceritakan kisah-kisah dari Ramayana dan Mahabharata</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Reog">
-                <div class="card-content">
-                    <h4>Reog</h4>
-                    <p>Kesenian tradisional yang berasal dari Ponorogo dengan topeng singa barong yang besar</p>
-                </div>
-            </div>
-            <div class="content-card">
-                <img src="/placeholder.svg?height=180&width=250" alt="Kuda Lumping">
-                <div class="card-content">
-                    <h4>Kuda Lumping</h4>
-                    <p>Kesenian rakyat tradisional Jawa yang menggunakan properti kuda tiruan dari anyaman bambu</p>
-                </div>
-            </div>
+                ";
+            }
+            ?>
         </div>
     </section>
 
-    <!-- Artikel Budaya Section -->
+
     <section id="artikel" class="section">
-        <h2 class="section-title">Artikel Budaya</h2>
-        <div class="article-grid">
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Budaya Jawa Timur">
-                <div class="article-content">
-                    <h4>5 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
-                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Wisata Tradisional">
-                <div class="article-content">
-                    <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
-                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Pelestarian Budaya">
-                <div class="article-content">
-                    <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
-                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="/placeholder.svg?height=200&width=280" alt="Kearifan Lokal">
-                <div class="article-content">
-                    <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
-                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
-                    <a href="#" class="read-more">Baca Selengkapnya</a>
+    <h2 class="section-title">Artikel</h2>
+    <div class="article-grid">
+        <article class="article-card">
+            <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90" alt="Budaya Jawa Timur">
+            <div class="article-content">
+                <h4>6 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
+                <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga kuliner khas yang menggugah selera...</p>
+                <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia" target="_blank" class="read-more">Baca Selengkapnya</a>
+            </div>
+        </article>
+        <article class="article-card">
+            <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2" alt="Wisata Tradisional">
+            <div class="article-content">
+                <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
+                <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai tradisi yang masih lestari...</p>
+                <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150" target="_blank" class="read-more">Baca Selengkapnya</a>
+            </div>
+        </article>
+        <article class="article-card">
+            <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp" alt="Pelestarian Budaya">
+            <div class="article-content">
+                <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
+                <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur tetap hidup di era modern...</p>
+                <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7" target="_blank" class="read-more">Baca Selengkapnya</a>
+            </div>
+        </article>
+        <article class="article-card">
+            <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90" alt="Kearifan Lokal">
+            <div class="article-content">
+                <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
+                <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian hingga filosofi hidup...</p>
+                <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda" target="_blank" class="read-more">Baca Selengkapnya</a>
                 </div>
             </article>
         </div>
     </section>
 
-    <!-- Footer -->
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -665,7 +620,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Swara Jatim Tiga Cahya Diksaland</p>
+            <p>&copy; 2025 Swara Jatim</p>
         </div>
     </footer>
 </body>
