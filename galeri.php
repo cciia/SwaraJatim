@@ -1,7 +1,5 @@
 <?php
 include "koneksi.php";
-
-// Ambil id kategori dari URL
 if (isset($_GET['id'])) {
     $cat_id = intval($_GET['id']);
 } else {
@@ -9,7 +7,6 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Mapping kategori -> judul custom
 $kategori = [
     2 => "Kuliner",
     3 => "Pakaian",
@@ -23,7 +20,6 @@ if (!isset($kategori[$cat_id])) {
 
 $judul_custom = $kategori[$cat_id];
 
-// Ambil semua artikel dari kategori
 $sql = "SELECT * FROM articles WHERE culture_type_id = $cat_id ORDER BY id DESC";
 $result = mysqli_query($koneksi, $sql);
 ?>
@@ -88,6 +84,57 @@ $result = mysqli_query($koneksi, $sql);
 
         .nav-menu a:hover {
             color: #f5f1e8;
+        }
+
+        /* Added search box styling */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 0.9rem;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: #666;
+        }
+
+        .search-clear {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .search-clear:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-style: italic;
+            grid-column: 1 / -1;
         }
 
         /* Header judul section */
@@ -244,10 +291,15 @@ $result = mysqli_query($koneksi, $sql);
 </head>
 <body>
 
-    <!-- Header navigasi -->
     <header class="header">
         <div class="nav-container">
             <div class="logo"><a href="index.php">Swara Jatim</a></div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="Cari artikel...">
+                <button id="clearSearch" class="search-clear" title="Hapus pencarian">×</button>
+            </div>
+            
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.php">Home</a></li>
@@ -259,23 +311,20 @@ $result = mysqli_query($koneksi, $sql);
         </div>
     </header>
 
-    <!-- Header judul section -->
     <header class="section-header">
         <h1>Galeri <?php echo $judul_custom; ?></h1>
     </header>
 
-    <!-- Gallery -->
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="galleryGrid">
         <?php
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <div class="gallery-card">
+                <div class="gallery-card" data-title="<?php echo strtolower($row['title']); ?>" data-content="<?php echo strtolower(strip_tags($row['content'])); ?>">
                     <img src="uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>">
                     <div class="card-content">
                         <h3><?php echo $row['title']; ?></h3>
                         <p><?php 
-                            // Ambil 2 kalimat pertama untuk preview
                             $sentences = explode('.', $row['content']);
                             echo isset($sentences[0]) ? $sentences[0] . '.' : '';
                             if(isset($sentences[1])) echo ' ' . $sentences[1] . '.';
@@ -291,46 +340,108 @@ $result = mysqli_query($koneksi, $sql);
         ?>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Swara Jatim</h4>
-                <p>Portal Budaya & Berita Jawa Timur</p>
-                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif
-                    dan edukatif untuk generasi mendatang.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Navigasi Cepat</h4>
-                <a href="#home">Beranda</a>
-                <a href="#galeri">Galeri</a>
-                <a href="#artikel">Artikel</a>
-                <a href="#ai-assistant">AI Assistant</a>
-                <a href="#kontak">Kontak</a>
-            </div>
-            <div class="footer-section">
-                <h4>Galeri Budaya</h4>
-                <a href="#">Kuliner</a>
-                <a href="#">Pakaian & Batik</a>
-                <a href="#">Kesenian</a>
-                <a href="#">Tradisi</a>
-            </div>
-            <div class="footer-section">
-                <h4>Hubungi Kami</h4>
-                <p>Email: info@swarajatim.com</p>
-                <p>Telepon: (031) 123-4567</p>
-                <div class="social-links">
-                    <a href="#" title="Facebook">f</a>
-                    <a href="#" title="Twitter">t</a>
-                    <a href="#" title="Instagram">i</a>
-                    <a href="#" title="YouTube">y</a>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Swara Jatim</h4>
+                        <p>Portal Budaya & Berita Jawa Timur</p>
+                        <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif
+                            dan edukatif untuk generasi mendatang.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Navigasi Cepat</h4>
+                        <a href="#home">Beranda</a>
+                        <a href="#galeri">Galeri</a>
+                        <a href="#artikel">Artikel</a>
+                        <a href="#ai-assistant">AI Assistant</a>
+                        <a href="#kontak">Kontak</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Galeri Budaya</h4>
+                        <a href="#">Kuliner</a>
+                        <a href="#">Pakaian & Batik</a>
+                        <a href="#">Kesenian</a>
+                        <a href="#">Tradisi</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Hubungi Kami</h4>
+                        <p>Email: info@swarajatim.com</p>
+                        <p>Telepon: (031) 123-4567</p>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">f</a>
+                            <a href="#" title="Twitter">t</a>
+                            <a href="#" title="Instagram">i</a>
+                            <a href="#" title="YouTube">y</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Swara Jatim. Semua hak cipta dilindungi.</p>
-        </div>
-    </footer>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Swara Jatim. Semua hak cipta dilindungi.</p>
+                </div>
+            </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const clearButton = document.getElementById('clearSearch');
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryCards = document.querySelectorAll('.gallery-card');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                galleryCards.forEach(card => {
+                    const title = card.getAttribute('data-title');
+                    const content = card.getAttribute('data-content');
+                    
+                    if (searchTerm === '' || title.includes(searchTerm) || content.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+
+                if (visibleCount === 0 && searchTerm !== '') {
+                    const noResultsDiv = document.createElement('div');
+                    noResultsDiv.className = 'no-results';
+                    noResultsDiv.innerHTML = `
+                        <h3>Tidak ada hasil ditemukan</h3>
+                        <p>Coba gunakan kata kunci yang berbeda atau hapus pencarian untuk melihat semua artikel.</p>
+                    `;
+                    galleryGrid.appendChild(noResultsDiv);
+                }
+            }
+
+            function clearSearch() {
+                searchInput.value = '';
+                performSearch();
+                searchInput.focus();
+            }
+
+            searchInput.addEventListener('input', performSearch);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+            
+            clearButton.addEventListener('click', clearSearch);
+
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
