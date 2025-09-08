@@ -1,8 +1,6 @@
 <?php
-// detail.php
 include "koneksi.php";
 
-// Ambil ID artikel dari URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id > 0) {
@@ -19,7 +17,6 @@ if ($id > 0) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?php echo $row['title']; ?></title>
             <style>
-                /* ================== Body & Typography ================== */
                 body {
                     font-family: Georgia, serif;
                     margin: 0;
@@ -29,7 +26,6 @@ if ($id > 0) {
                     line-height: 1.8;
                 }
 
-                /* ================== Header ================== */
                 .header {
                     background-color: rgba(139, 69, 19, 0.9);
                     padding: 1rem 0;
@@ -55,8 +51,8 @@ if ($id > 0) {
                 }
 
                 .logo a {
-                    color: inherit;          /* Warna mengikuti parent (tetap putih) */
-                    text-decoration: none;   /* Hilangkan underline */
+                    color: inherit;
+                    text-decoration: none;   
                     cursor: pointer;        
                 }
 
@@ -76,10 +72,9 @@ if ($id > 0) {
                     color: #f5f1e8;
                 }
 
-                /* ================== Main Content ================== */
                 main {
                     max-width: 100vh;
-                    margin: 140px auto 50px; /* header fixed */
+                    margin: 140px auto 50px; 
                     padding: 0 20px;
                 }
 
@@ -134,7 +129,6 @@ if ($id > 0) {
                     background-color: #b25000;
                 }
 
-                /* Footer */
                 .footer {
                     background: #2c1810;
                     color: white;
@@ -201,7 +195,7 @@ if ($id > 0) {
             </style>
         </head>
         <body>
-            <!-- Header navigasi -->
+
             <header class="header">
                 <div class="nav-container">
                     <div class="logo"><a href="index.php">Swara Jatim</a></div>
@@ -209,14 +203,13 @@ if ($id > 0) {
                         <ul class="nav-menu">
                             <li><a href="index.php">Home</a></li>
                             <li><a href="index.php #galeri">Galeri</a></li>
-                            <li><a href="index.php #ai-assistant">Gemini</a></li>
+                            <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
                             <li><a href="index.php #artikel">Artikel</a></li>
                         </ul>
                     </nav>
                 </div>
             </header>
 
-            <!-- Konten artikel -->
             <main>
                 <div class="article-container">
                     <div class="article-image">
@@ -230,7 +223,6 @@ if ($id > 0) {
                 </div>
             </main>
 
-            <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-section">
@@ -244,7 +236,7 @@ if ($id > 0) {
                         <a href="#home">Beranda</a>
                         <a href="#galeri">Galeri</a>
                         <a href="#artikel">Artikel</a>
-                        <a href="#ai-assistant">AI Assistant</a>
+                        <a href="#ai-assistant">Swara Jatim AI</a>
                         <a href="#kontak">Kontak</a>
                     </div>
                     <div class="footer-section">

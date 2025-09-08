@@ -31,7 +31,6 @@ $result = mysqli_query($koneksi, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri <?php echo $judul_custom; ?></title>
     <style>
-        /* Global */
         body {
             font-family: Georgia, sans-serif;
             margin: 0;
@@ -39,7 +38,6 @@ $result = mysqli_query($koneksi, $sql);
             background-color: #FFEAC5;
         }
 
-        /* Header navigasi */
         .header {
             background-color: rgba(139, 69, 19, 0.9);
             padding: 1rem 0;
@@ -65,8 +63,8 @@ $result = mysqli_query($koneksi, $sql);
         }
 
         .logo a {
-            color: inherit;          /* Warna mengikuti parent (tetap putih) */
-            text-decoration: none;   /* Hilangkan underline */
+            color: inherit;         
+            text-decoration: none;   
             cursor: pointer;        
         }
 
@@ -86,7 +84,6 @@ $result = mysqli_query($koneksi, $sql);
             color: #f5f1e8;
         }
 
-        /* Added search box styling */
         .search-container {
             display: flex;
             align-items: center;
@@ -137,10 +134,9 @@ $result = mysqli_query($koneksi, $sql);
             grid-column: 1 / -1;
         }
 
-        /* Header judul section */
         .section-header {
             text-align: center;
-            margin: 100px 0 20px 0; /* beri jarak dari header navigasi */
+            margin: 100px 0 20px 0; 
             font-size: 1.5rem;
         }
 
@@ -151,7 +147,6 @@ $result = mysqli_query($koneksi, $sql);
             padding-bottom: 5px;
         }
 
-        /* Gallery grid 2 kolom */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -197,7 +192,7 @@ $result = mysqli_query($koneksi, $sql);
             margin-bottom: 15px;
             overflow: hidden;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* maksimal 2 baris */
+            -webkit-line-clamp: 2; 
             -webkit-box-orient: vertical;
         }
 
@@ -216,7 +211,6 @@ $result = mysqli_query($koneksi, $sql);
             background-color: #b25000;
         }
 
-        /* Footer */
         .footer {
             background: #2c1810;
             color: white;
@@ -281,7 +275,6 @@ $result = mysqli_query($koneksi, $sql);
             color: #999;
         }
 
-        /* Responsive mobile */
         @media(max-width: 600px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -304,7 +297,7 @@ $result = mysqli_query($koneksi, $sql);
                 <ul class="nav-menu">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="index.php #galeri">Galeri</a></li>
-                    <li><a href="index.php #ai-assistant">Gemini</a></li>
+                    <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
                     <li><a href="index.php #artikel">Artikel</a></li>
                 </ul>
             </nav>
@@ -353,7 +346,7 @@ $result = mysqli_query($koneksi, $sql);
                         <a href="#home">Beranda</a>
                         <a href="#galeri">Galeri</a>
                         <a href="#artikel">Artikel</a>
-                        <a href="#ai-assistant">AI Assistant</a>
+                        <a href="#ai-assistant">Swara Jatim AI</a>
                         <a href="#kontak">Kontak</a>
                     </div>
                     <div class="footer-section">

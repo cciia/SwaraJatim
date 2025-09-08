@@ -966,7 +966,7 @@
                 <a href="#home">Beranda</a>
                 <a href="#galeri">Galeri</a>
                 <a href="#artikel">Artikel</a>
-                <a href="#ai-assistant">AI Assistant</a>
+                <a href="#ai-assistant">Swara Jatim AI</a>
                 <a href="#koneksi">Koneksi</a>
             </div>
             <div class="footer-section">
