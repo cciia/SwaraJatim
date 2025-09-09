@@ -1,5 +1,5 @@
 <?php
-$API_KEY = "AIzaSyA6_KjzbdP1WhywX0suGPFpS4zn91CqCxc"; 
+$API_KEY = ""; 
 $model = "gemini-2.5-pro"; 
 $url = "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$API_KEY";
 
