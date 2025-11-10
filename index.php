@@ -734,7 +734,7 @@
                     <li><a href="#galeri">Galeri</a></li>
                     <li><a href="#ai-assistant">Swara Jatim AI</a></li>
                     <li><a href="#artikel">Artikel</a></li>
-                    <li><a href="#koneksi">Koneksi</a></li>
+                    <li><a href="mini-game.php">Mini Game</a></li>
                 </ul>
             </nav>
             <div class="search-container">
