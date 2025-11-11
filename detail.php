@@ -4,7 +4,7 @@ include "koneksi.php";
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id > 0) {
-    $query = "SELECT * FROM articles WHERE id = $id";
+    $query = "SELECT * FROM konten WHERE id = $id";
     $result = mysqli_query($koneksi, $query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -12,10 +12,11 @@ if ($id > 0) {
         ?>
         <!DOCTYPE html>
         <html lang="id">
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?php echo $row['title']; ?></title>
+            <title><?php echo $row['name']; ?></title>
             <style>
                 body {
                     font-family: Georgia, serif;
@@ -52,8 +53,8 @@ if ($id > 0) {
 
                 .logo a {
                     color: inherit;
-                    text-decoration: none;   
-                    cursor: pointer;        
+                    text-decoration: none;
+                    cursor: pointer;
                 }
 
                 .nav-menu {
@@ -74,7 +75,7 @@ if ($id > 0) {
 
                 main {
                     max-width: 100vh;
-                    margin: 140px auto 50px; 
+                    margin: 140px auto 50px;
                     padding: 0 20px;
                 }
 
@@ -191,9 +192,10 @@ if ($id > 0) {
                     border-top: 1px solid #444;
                     margin-top: 2rem;
                     color: #999;
-                        }
+                }
             </style>
         </head>
+
         <body>
 
             <header class="header">
@@ -205,6 +207,7 @@ if ($id > 0) {
                             <li><a href="index.php #galeri">Galeri</a></li>
                             <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
                             <li><a href="index.php #artikel">Artikel</a></li>
+                            <li><a href="mini-game.php">Mini Game</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -213,12 +216,12 @@ if ($id > 0) {
             <main>
                 <div class="article-container">
                     <div class="article-image">
-                        <img src="uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['title']; ?>">
+                        <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>">
                     </div>
                     <div class="article-content">
-                        <h1><?php echo $row['title']; ?></h1>
-                        <p><?php echo nl2br($row['content']); ?></p>
-                        <a class="back-btn" href="galeri.php?id=<?php echo $row['culture_type_id']; ?>">Kembali</a>
+                        <h1><?php echo $row['name']; ?></h1>
+                        <p><?php echo nl2br($row['description']); ?></p>
+                        <a class="back-btn" href="galeri.php?id=<?php echo $row['category_id']; ?>">Kembali</a>
                     </div>
                 </div>
             </main>
@@ -263,6 +266,7 @@ if ($id > 0) {
                 </div>
             </footer>
         </body>
+
         </html>
         <?php
     } else {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +56,7 @@
         .logo a {
             color: inherit;
             text-decoration: none;
-            cursor: pointer;        
+            cursor: pointer;
         }
 
         .nav-menu {
@@ -195,6 +196,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -230,7 +232,7 @@
         /* Gallery Section */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
 
@@ -740,7 +742,7 @@
             <div class="search-container">
                 <input type="text" class="search-box" placeholder="Cari budaya, kuliner, tradisi..." id="searchInput">
                 <button class="search-btn" onclick="performSearch()">
-                <i class="fas fa-search"></i>
+                    <i class="fas fa-search"></i>
                 </button>
                 <div class="search-results" id="searchResults"></div>
             </div>
@@ -760,15 +762,16 @@
             <?php
             include "koneksi.php";
             $kategori = [
+                1 => "Wisata",
                 2 => "Kuliner",
                 3 => "Pakaian",
                 4 => "Tradisi"
             ];
 
             foreach ($kategori as $cat_id => $judul_custom) {
-                $sql = "SELECT * FROM articles 
-                        WHERE culture_type_id = $cat_id 
-                        ORDER BY id DESC 
+                $sql = "SELECT * FROM konten
+                        WHERE category_id = $cat_id
+                        ORDER BY id DESC
                         LIMIT 1";
                 $result = mysqli_query($koneksi, $sql);
 
@@ -776,7 +779,7 @@
                     ?>
                     <a href="galeri.php?id=<?php echo $cat_id; ?>" class="gallery-link">
                         <div class="gallery-card">
-                            <img src="uploads/<?php echo $row['image']; ?>" alt="<?php echo $judul_custom; ?>">
+                            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $judul_custom; ?>">
                             <div class="overlay">
                                 <h3 class="gallery-title"><?php echo 'Galeri ' . $judul_custom; ?></h3>
                             </div>
@@ -805,9 +808,10 @@
                     </button>
                 </div>
             </div>
-           <div class="chat-interface" onclick="window.location.href='budaya-chatbot/index.php'">
+            <div class="chat-interface" onclick="window.location.href='budaya-chatbot/index.php'">
                 <div class="chat-header">🤖 Swara Jatim AI</div>
-                <div style="flex: 1; background: #f9f9f9; border-radius: 10px; margin-bottom: 1rem; display:flex; align-items:center; justify-content:center; color:#999; font-style: italic;">
+                <div
+                    style="flex: 1; background: #f9f9f9; border-radius: 10px; margin-bottom: 1rem; display:flex; align-items:center; justify-content:center; color:#999; font-style: italic;">
                     Klik untuk memulai percakapan dengan AI Budaya
                 </div>
                 <div class="chat-input">
@@ -820,24 +824,51 @@
     </section>
 
     <section class="section fade-in">
-        <h2 class="section-title">Kuliner</h2>
+        <h2 class="section-title">Wisata</h2>
         <div class="content-grid">
             <?php
             include 'koneksi.php';
             $res = mysqli_query($koneksi, "
-                SELECT a.*, c.name AS city_name 
-                FROM articles a
-                LEFT JOIN cities c ON a.city_id = c.id
-                WHERE a.culture_type_id = 2
-                ORDER BY a.created_at DESC
+                SELECT k.*, c.name AS city_name
+                FROM konten k
+                LEFT JOIN cities c ON k.city_id = c.id
+                WHERE k.category_id = 1
+                ORDER BY k.id DESC
             ");
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo "
                 <div class='content-card'>
-                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='200' width='280'>
+                    <img src='{$row['image_url']}' alt='{$row['name']}' height='200' width='280'>
                     <div class='card-content'>
-                        <h4>{$row['title']}</h4>
+                        <h4>{$row['name']}</h4>
+                        <p>{$row['city_name']}</p>
+                    </div>
+                </div>
+                ";
+            }
+            ?>
+        </div>
+    </section>
+    <section class="section fade-in">
+        <h2 class="section-title">Kuliner</h2>
+        <div class="content-grid">
+            <?php
+            include 'koneksi.php';
+            $res = mysqli_query($koneksi, "
+                SELECT k.*, c.name AS city_name
+                FROM konten k
+                LEFT JOIN cities c ON k.city_id = c.id
+                WHERE k.category_id = 2
+                ORDER BY k.id DESC
+            ");
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                echo "
+                <div class='content-card'>
+                    <img src='{$row['image_url']}' alt='{$row['name']}' height='200' width='280'>
+                    <div class='card-content'>
+                        <h4>{$row['name']}</h4>
                         <p>{$row['city_name']}</p>
                     </div>
                 </div>
@@ -853,19 +884,19 @@
             <?php
             include 'koneksi.php';
             $res = mysqli_query($koneksi, "
-                SELECT a.*, c.name AS city_name 
-                FROM articles a
-                LEFT JOIN cities c ON a.city_id = c.id
-                WHERE a.culture_type_id = 3
-                ORDER BY a.created_at DESC
+                SELECT k.*, c.name AS city_name
+                FROM konten k
+                LEFT JOIN cities c ON k.city_id = c.id
+                WHERE k.category_id = 3
+                ORDER BY k.id DESC
             ");
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo "
                 <div class='content-card'>
-                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='200' width='280'>
+                    <img src='{$row['image_url']}' alt='{$row['name']}' height='200' width='280'>
                     <div class='card-content'>
-                        <h4>{$row['title']}</h4>
+                        <h4>{$row['name']}</h4>
                         <p>{$row['city_name']}</p>
                     </div>
                 </div>
@@ -881,19 +912,19 @@
             <?php
             include 'koneksi.php';
             $res = mysqli_query($koneksi, "
-                SELECT a.*, c.name AS city_name 
-                FROM articles a
-                LEFT JOIN cities c ON a.city_id = c.id
-                WHERE a.culture_type_id = 4
-                ORDER BY a.created_at DESC
+                SELECT k.*, c.name AS city_name
+                FROM konten k
+                LEFT JOIN cities c ON k.city_id = c.id
+                WHERE k.category_id = 4
+                ORDER BY k.id DESC
             ");
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo "
                 <div class='content-card'>
-                    <img src='uploads/{$row['image']}' alt='{$row['title']}' height='200' width='280'>
+                    <img src='{$row['image_url']}' alt='{$row['name']}' height='200' width='280'>
                     <div class='card-content'>
-                        <h4>{$row['title']}</h4>
+                        <h4>{$row['name']}</h4>
                         <p>{$row['city_name']}</p>
                     </div>
                 </div>
@@ -1023,8 +1054,8 @@
                 return;
             }
 
-            const filteredResults = searchData.filter(item => 
-                item.title.toLowerCase().includes(query) || 
+            const filteredResults = searchData.filter(item =>
+                item.title.toLowerCase().includes(query) ||
                 item.desc.toLowerCase().includes(query)
             );
 
@@ -1050,7 +1081,7 @@
         function navigateToResult(url) {
             document.getElementById('searchResults').style.display = 'none';
             document.getElementById('searchInput').value = '';
-            
+
             if (url.startsWith('#')) {
                 document.querySelector(url).scrollIntoView({ behavior: 'smooth' });
             } else {
@@ -1059,13 +1090,13 @@
         }
 
         document.getElementById('searchInput').addEventListener('input', performSearch);
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 performSearch();
             }
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             const searchContainer = document.querySelector('.search-container');
             if (!searchContainer.contains(e.target)) {
                 document.getElementById('searchResults').style.display = 'none';
@@ -1077,7 +1108,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -1103,7 +1134,7 @@
         });
 
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '1';
             document.querySelectorAll('.fade-in').forEach((el, index) => {
                 setTimeout(() => {
