@@ -97,7 +97,14 @@ button:hover {
 const quizTrueFalse = [
   { question: "Rawon adalah makanan khas Jawa Timur.", correctAnswer: true },
   { question: "Reog Ponorogo berasal dari Bali.", correctAnswer: false },
-  { question: "Tari Gandrung berasal dari Banyuwangi.", correctAnswer: true }
+  { question: "Tari Gandrung berasal dari Banyuwangi.", correctAnswer: true },
+  { question: "Rujak Cingur menggunakan bumbu petis khas Jawa Timur.", correctAnswer: true },
+  { question: "Soto Lamongan identik dengan koya.", correctAnswer: true },
+  { question: "Ludruk adalah seni musik tradisional.", correctAnswer: false },
+  { question: "Pesa'an adalah pakaian adat laki-laki Madura.", correctAnswer: true },
+  { question: "Taman Nasional Baluran disebut Africa van Java.", correctAnswer: true },
+  { question: "Wayang Kulit berasal dari Sumatera Utara.", correctAnswer: false },
+  { question: "Odheng Santapan adalah ikat kepala khas Madura.", correctAnswer: true }
 ];
 
 const quizMultipleChoice = [
@@ -112,6 +119,34 @@ const quizMultipleChoice = [
   { question: "Tradisi 'Karapan Sapi' berasal dari...",
     choices: ["Bali", "Jakarta", "Madura", "Papua"],
     correctAnswer: "Madura"
+  },
+  { question: "Wisata yang dijuluki 'Africa van Java' adalah...",
+    choices: ["Kawah Ijen", "Baluran", "Papuma", "Coban Rondo"],
+    correctAnswer: "Baluran"
+  },
+  { question: "Kuliner dengan kuah hitam dari kluwek adalah...",
+    choices: ["Bakso Malang", "Rawon", "Soto Lamongan", "Nasi Pecel"],
+    correctAnswer: "Rawon"
+  },
+  { question: "Busana Cak & Ning biasanya digunakan oleh...",
+    choices: ["Duta Pariwisata Surabaya", "Petani", "Pelajar SMP", "Pedagang"],
+    correctAnswer: "Duta Pariwisata Surabaya"
+  },
+  { question: "Tari pembuka dalam pertunjukan Ludruk adalah...",
+    choices: ["Tari Pendet", "Tari Remo", "Tari Jaipong", "Tari Topeng"],
+    correctAnswer: "Tari Remo"
+  },
+  { question: "Destinasi dengan fenomena blue fire adalah...",
+    choices: ["Papuma", "Kawah Ijen", "Bromo", "Bukit Jaddih"],
+    correctAnswer: "Kawah Ijen"
+  },
+  { question: "Baju Manten Osing berasal dari...",
+    choices: ["Tulungagung", "Banyuwangi", "Lamongan", "Malang"],
+    correctAnswer: "Banyuwangi"
+  },
+  { question: "Lontong, tauge, lentho, dan sambal petis adalah ciri dari...",
+    choices: ["Lontong Balap", "Rujak Cingur", "Rawon", "Nasi Pecel"],
+    correctAnswer: "Lontong Balap"
   }
 ];
 
@@ -127,8 +162,37 @@ const quizMultipleResponse = [
   { question: "Tradisi Jawa Timur:",
     choices: ["Karapan Sapi", "Thanksgiving", "Reog Ponorogo", "Oktoberfest"],
     correctAnswers: ["Karapan Sapi", "Reog Ponorogo"]
+  },
+  { question: "Yang merupakan wisata alam Jawa Timur:",
+    choices: ["Gunung Bromo", "Pantai Klayar", "Menara Eiffel", "Kawah Ijen"],
+    correctAnswers: ["Gunung Bromo", "Pantai Klayar", "Kawah Ijen"]
+  },
+  { question: "Kuliner yang menggunakan petis sebagai bahan:",
+    choices: ["Rujak Cingur", "Tahu Tek", "Sushi", "Burger"],
+    correctAnswers: ["Rujak Cingur", "Tahu Tek"]
+  },
+  { question: "Termasuk pakaian adat Jawa Timur:",
+    choices: ["Kebaya Rancongan", "Baju Manten Osing", "Hanfu", "Kimono"],
+    correctAnswers: ["Kebaya Rancongan", "Baju Manten Osing"]
+  },
+  { question: "Yang merupakan kesenian / pertunjukan:",
+    choices: ["Ludruk", "Wayang Kulit Jawa Timur", "Rujak Cingur", "Bakso"],
+    correctAnswers: ["Ludruk", "Wayang Kulit Jawa Timur"]
+  },
+  { question: "Tempat wisata yang berada di Banyuwangi:",
+    choices: ["Kawah Ijen", "Ranu Kumbolo", "Bromo", "Papuma"],
+    correctAnswers: ["Kawah Ijen"]
+  },
+  { question: "Termasuk makanan Jawa Timur yang terkenal:",
+    choices: ["Bakso Malang", "Nasi Pecel", "Lasagna", "Soto Lamongan"],
+    correctAnswers: ["Bakso Malang", "Nasi Pecel", "Soto Lamongan"]
+  },
+  { question: "Seni yang berasal dari Ponorogo:",
+    choices: ["Reog Ponorogo", "Bebaritan", "Tari Remo", "Wayang Kulit Jawa Timur"],
+    correctAnswers: ["Reog Ponorogo"]
   }
 ];
+
 
 // ======================================================
 // SETUP MODE
