@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chatbot Budaya Indonesia - Swara Jatim</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../petajatim2 1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ============================
    GLOBAL STYLE (NO GRADIENT)
@@ -24,7 +25,7 @@ body {
   background: var(--cream-bg);
   margin: 0;
   padding: 1.5rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--brown-text);
 }
 
@@ -49,7 +50,7 @@ body {
 ============================ */
 .header h1 {
   text-align: center;
-  font-family: "Playfair Display", serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2.8rem;
   margin-top: 5rem;
   font-weight: 700;
@@ -83,7 +84,7 @@ body {
   color: white;
   padding: 1rem;
   text-align: center;
-  font-family: "Playfair Display", serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   border-radius: var(--radius) var(--radius) 0 0;

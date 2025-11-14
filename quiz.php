@@ -8,11 +8,12 @@ $mode = $_GET["mode"] ?? "truefalse"; // default true false
 <head>
 <meta charset="UTF-8">
 <title>Quiz - Swara Jatim</title>
-
+<link rel="icon" type="image/png" href="petajatim2 1.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 body {
     background-color: #FFEAC5;
-    font-family: 'Georgia', serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;

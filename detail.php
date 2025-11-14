@@ -17,9 +17,11 @@ if ($id > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?php echo $row['name']; ?></title>
+            <link rel="icon" type="image/png" href="petajatim2 1.png">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
             <style>
                 body {
-                    font-family: Georgia, serif;
+                    font-family: 'Poppins', sans-serif;
                     margin: 0;
                     padding: 0;
                     background-color: #FFEAC5;
@@ -71,6 +73,88 @@ if ($id > 0) {
 
                 .nav-menu a:hover {
                     color: #f5f1e8;
+                }
+
+                .burger-menu {
+                    display: none;
+                    flex-direction: column;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    gap: 5px;
+                    padding: 0.5rem;
+                    z-index: 1001;
+                }
+
+                .burger-menu span {
+                    width: 25px;
+                    height: 3px;
+                    background: rgba(255, 255, 255, 0.85);
+                    border-radius: 2px;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .burger-menu.active span:nth-child(1) {
+                    transform: rotate(45deg) translate(8px, 8px);
+                }
+
+                .burger-menu.active span:nth-child(2) {
+                    opacity: 0;
+                }
+
+                .burger-menu.active span:nth-child(3) {
+                    transform: rotate(-45deg) translate(8px, -8px);
+                }
+
+                .nav-menu-wrapper {
+                    display: flex;
+                }
+
+                /* Responsive burger menu for tablets and mobile */
+                @media (max-width: 1024px) {
+                    .burger-menu {
+                        display: flex;
+                    }
+
+                    .nav-menu-wrapper {
+                        position: absolute;
+                        top: 70px;
+                        left: 0;
+                        right: 0;
+                        background: rgba(139, 69, 19, 0.98);
+                        flex-direction: column;
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        backdrop-filter: blur(10px);
+                    }
+
+                    .nav-menu-wrapper.active {
+                        max-height: 500px;
+                        padding: 1.5rem 0;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .nav-menu {
+                        flex-direction: column;
+                        gap: 0;
+                        padding: 0 2rem;
+                    }
+
+                    .nav-menu li {
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                        padding: 1rem 0;
+                    }
+
+                    .nav-menu li:last-child {
+                        border-bottom: none;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .nav-menu {
+                        padding: 0 1rem;
+                    }
                 }
 
                 main {
@@ -201,15 +285,23 @@ if ($id > 0) {
             <header class="header">
                 <div class="nav-container">
                     <div class="logo"><a href="index.php">Swara Jatim</a></div>
-                    <nav>
-                        <ul class="nav-menu">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="index.php #galeri">Galeri</a></li>
-                            <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
-                            <li><a href="index.php #artikel">Artikel</a></li>
-                            <li><a href="mini-game.php">Mini Game</a></li>
-                        </ul>
-                    </nav>
+                    
+                    <button class="burger-menu" id="burgerMenu" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <div class="nav-menu-wrapper" id="navMenuWrapper">
+                        <nav>
+                            <ul class="nav-menu">
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="index.php #galeri">Galeri</a></li>
+                                <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
+                                <li><a href="mini-game.php">Mini Game</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </header>
 
@@ -265,6 +357,16 @@ if ($id > 0) {
                     <p>&copy; 2025 Swara Jatim. Semua hak cipta dilindungi.</p>
                 </div>
             </footer>
+
+            <script>
+                const burgerMenu = document.getElementById('burgerMenu');
+                const navMenuWrapper = document.getElementById('navMenuWrapper');
+
+                burgerMenu.addEventListener('click', function() {
+                    burgerMenu.classList.toggle('active');
+                    navMenuWrapper.classList.toggle('active');
+                });
+            </script>
         </body>
 
         </html>

@@ -32,9 +32,8 @@ $result = mysqli_query($koneksi, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri <?php echo $judul_custom; ?> - Swara Jatim</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="petajatim2 1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -60,7 +59,7 @@ $result = mysqli_query($koneksi, $sql);
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f5f1e8;
             color: #333;
             line-height: 1.6;
@@ -171,9 +170,44 @@ $result = mysqli_query($koneksi, $sql);
             width: 100%;
         }
 
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 5px;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .nav-menu-wrapper {
+            display: flex;
+        }
+
         /* ===== HERO SECTION ===== */
         .hero-section {
-            margin-top: 70px;
+            margin-top: 80px;
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-dark) 100%);
             padding: 4rem 2rem;
             text-align: center;
@@ -199,7 +233,7 @@ $result = mysqli_query($koneksi, $sql);
         }
 
         .hero-section h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
             font-weight: 700;
@@ -294,7 +328,7 @@ $result = mysqli_query($koneksi, $sql);
             font-size: 1.5rem;
             line-height: 1.3;
             font-weight: 600;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         .card-content p {
@@ -344,7 +378,7 @@ $result = mysqli_query($koneksi, $sql);
             color: var(--primary-dark);
             font-size: 2rem;
             margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         .empty-state p {
@@ -380,7 +414,7 @@ $result = mysqli_query($koneksi, $sql);
             color: var(--primary-dark);
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         .no-results p {
@@ -464,16 +498,55 @@ $result = mysqli_query($koneksi, $sql);
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .nav-container {
+        /* Responsive burger menu for tablets and mobile */
+        @media (max-width: 1024px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu-wrapper {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(44, 24, 16, 0.98);
                 flex-direction: column;
-                gap: 1rem;
-                padding: 1rem 1.5rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu-wrapper.active {
+                max-height: 500px;
+                padding: 1.5rem 0;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             }
 
             .nav-menu {
-                gap: 1.5rem;
-                font-size: 0.9rem;
+                flex-direction: column;
+                gap: 0;
+                padding: 0 2rem;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .hero-section {
+                margin-top: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 1rem;
+                padding: 1rem 1.5rem;
             }
 
             .search-container {
@@ -482,7 +555,7 @@ $result = mysqli_query($koneksi, $sql);
 
             .hero-section {
                 padding: 3rem 1.5rem;
-                margin-top: 60px;
+                margin-top: 110px;
             }
 
             .hero-section h1 {
@@ -516,18 +589,18 @@ $result = mysqli_query($koneksi, $sql);
                 font-size: 1.3rem;
             }
 
-            .nav-menu {
-                display: none;
-            }
-
             .search-box {
                 padding: 0.7rem 1rem;
                 font-size: 0.9rem;
             }
 
+            .nav-menu {
+                padding: 0 1rem;
+            }
+
             .hero-section {
                 padding: 2rem 1rem;
-                margin-top: 50px;
+                margin-top: 100px;
             }
 
             .hero-section h1 {
@@ -586,17 +659,25 @@ $result = mysqli_query($koneksi, $sql);
             <div class="logo"><a href="index.php">Swara Jatim</a></div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-box" placeholder="Cari artikel...">
+                <input type="text" id="searchInput" class="search-box" placeholder="Cari...">
             </div>
 
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php#galeri">Galeri</a></li>
-                    <li><a href="index.php#ai-assistant">Swara Jatim AI</a></li>
-                    <li><a href="mini-game.php">Mini Game</a></li>
-                </ul>
-            </nav>
+            <button class="burger-menu" id="burgerMenu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu-wrapper" id="navMenuWrapper">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php#galeri">Galeri</a></li>
+                        <li><a href="index.php#ai-assistant">Swara Jatim AI</a></li>
+                        <li><a href="mini-game.php">Mini Game</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -689,6 +770,16 @@ $result = mysqli_query($koneksi, $sql);
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Burger menu toggle
+            const burgerMenu = document.getElementById('burgerMenu');
+            const navMenuWrapper = document.getElementById('navMenuWrapper');
+
+            burgerMenu.addEventListener('click', function() {
+                burgerMenu.classList.toggle('active');
+                navMenuWrapper.classList.toggle('active');
+            });
+
+            // Search functionality
             const searchInput = document.getElementById('searchInput');
             const galleryGrid = document.getElementById('galleryGrid');
             const galleryCards = document.querySelectorAll('.gallery-card');

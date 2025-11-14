@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Swara Jatim - Dari Jawa Timur, Untuk Nusantara</title>
+    <link rel="icon" type="image/png" href="petajatim2 1.png">
     <style>
         * {
             margin: 0;
@@ -14,7 +16,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f5f1e8;
             color: #333;
             line-height: 1.6;
@@ -165,7 +167,7 @@
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Responsive burger menu for tablets and mobile -->
+        /* Responsive burger menu for tablets and mobile */
         @media (max-width: 1024px) {
             .nav-container {
                 padding: 0 1.5rem;
@@ -1456,7 +1458,7 @@
             <div class="logo"><a href="index.php">Swara Jatim</a></div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-box" placeholder="Cari artikel...">
+                <input type="text" id="searchInput" class="search-box" placeholder="Cari...">
             </div>
 
             <!-- Added burger menu icon for mobile -->
@@ -1700,6 +1702,25 @@
                 navMenu.parentElement.classList.remove('active');
                 burgerMenu.classList.remove('active');
             }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const contentCards = document.querySelectorAll('.content-card, .gallery-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+
+            contentCards.forEach(card => {
+                const title = card.querySelector('h3, h4')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+                
+                if (searchTerm === '' || title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>

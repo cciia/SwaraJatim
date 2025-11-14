@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Mini Game - Swara Jatim</title>
-
+<link rel="icon" type="image/png" href="petajatim2 1.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 body {
     background-color: #FFEAC5;
-    font-family: 'Georgia', serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
@@ -20,7 +21,7 @@ body {
     padding: 12px 24px;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     transition: .3s ease;
     display: inline-flex;
