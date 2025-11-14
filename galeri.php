@@ -31,256 +31,550 @@ $result = mysqli_query($koneksi, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri <?php echo $judul_custom; ?></title>
+    <title>Galeri <?php echo $judul_custom; ?> - Swara Jatim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Georgia, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #C85A17;
+            --primary-dark: #8b4513;
+            --primary-light: #E8A863;
+            --secondary: #2c1810;
+            --neutral-100: #f8f6f3;
+            --neutral-200: #ede9e3;
+            --neutral-500: #888888;
+            --neutral-900: #1a1a1a;
+            --accent: #E8A863;
+            --success: #4caf50;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f1e8;
+            color: #333;
+            line-height: 1.6;
             background-color: #FFEAC5;
         }
 
+        /* ===== HEADER ===== */
         .header {
-            background-color: rgba(139, 69, 19, 0.9);
-            padding: 1rem 0;
+            background-color: var(--secondary);
+            padding: 1.2rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            background-color: rgba(44, 24, 16, 0.98);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            gap: 2rem;
         }
 
         .logo {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #FFE1AF;
+            background-clip: text;
+            text-decoration: none;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
         }
 
         .logo a {
             color: inherit;
             text-decoration: none;
-            cursor: pointer;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(232, 168, 99, 0.3);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
+            margin: 0;
         }
 
         .nav-menu a {
-            color: white;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: #f5f1e8;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .search-box {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-size: 0.9rem;
-            width: 200px;
-            transition: all 0.3s ease;
-        }
-
-        .search-box:focus {
-            outline: none;
-            background: white;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        .search-box::placeholder {
-            color: #666;
-        }
-
-        .search-clear {
-            background: none;
-            border: none;
             color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-dark) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(232, 168, 99, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            transition: background 0.3s;
         }
 
-        .search-clear:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            font-style: italic;
-            grid-column: 1 / -1;
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
-        .section-header {
-            text-align: center;
-            margin: 100px 0 20px 0;
-            font-size: 1.5rem;
+        .hero-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
-        .section-header h1 {
-            margin: 0;
-            border-bottom: 2px solid #d2691e;
-            display: inline-block;
-            padding-bottom: 5px;
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
         }
 
+        /* ===== GALLERY GRID ===== */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto 100px auto;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .gallery-card {
-            background-color: #fff;
-            border-radius: 10px;
+            background: white;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
             display: flex;
             flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
-        .gallery-card img {
+        .gallery-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image-wrapper {
             width: 100%;
-            height: 250px;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--neutral-200), var(--neutral-100));
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-card:hover .card-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            padding: 7px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            box-shadow: 0 4px 15px rgba(200, 90, 23, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .card-content {
-            padding: 15px;
+            padding: 2rem;
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .card-content h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
-            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            line-height: 1.3;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
         }
 
         .card-content p {
-            font-size: 14px;
-            color: #333;
-            text-align: justify;
-            margin-bottom: 15px;
-            overflow: hidden;
+            color: var(--neutral-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .card-content a {
-            display: block;
-            text-align: center;
-            background-color: #d2691e;
-            color: #fff;
-            padding: 8px 0;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .card-content a:hover {
-            background-color: #b25000;
-        }
-
-        .footer {
-            background: #2c1810;
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 0;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(200, 90, 23, 0.2);
+        }
+
+        .card-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(200, 90, 23, 0.35);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .empty-state h3 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .empty-state p {
+            color: var(--neutral-500);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(200, 90, 23, 0.2);
+        }
+
+        .back-to-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(200, 90, 23, 0.35);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-results h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .no-results p {
+            color: var(--neutral-500);
+            font-size: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--secondary);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h4 {
-            color: #f5f1e8;
-            margin-bottom: 1rem;
+            color: var(--accent);
+            margin-bottom: 1.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .footer-section p,
         .footer-section a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             display: block;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .footer-section a:hover {
-            color: white;
+            color: var(--accent);
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .social-links a {
-            background: #8b4513;
+            background: var(--primary);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin: 0;
         }
 
         .social-links a:hover {
-            background: #a0522d;
+            background: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(232, 168, 99, 0.3);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #444;
-            margin-top: 2rem;
-            color: #999;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
 
-        @media(max-width: 600px) {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .search-container {
+                max-width: 100%;
+            }
+
+            .hero-section {
+                padding: 3rem 1.5rem;
+                margin-top: 60px;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .card-image-wrapper {
+                height: 240px;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .search-box {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1rem;
+                margin-top: 50px;
+            }
+
+            .hero-section h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
+
+            .card-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .gallery-card:nth-child(n) {
+            animation-delay: calc(0.1s * var(--index, 0));
         }
     </style>
 </head>
@@ -293,50 +587,67 @@ $result = mysqli_query($koneksi, $sql);
 
             <div class="search-container">
                 <input type="text" id="searchInput" class="search-box" placeholder="Cari artikel...">
-                <button id="clearSearch" class="search-clear" title="Hapus pencarian">×</button>
             </div>
 
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php #galeri">Galeri</a></li>
-                    <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
-                    <li><a href="index.php #artikel">Artikel</a></li>
+                    <li><a href="index.php#galeri">Galeri</a></li>
+                    <li><a href="index.php#ai-assistant">Swara Jatim AI</a></li>
                     <li><a href="mini-game.php">Mini Game</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <header class="section-header">
-        <h1>Galeri <?php echo $judul_custom; ?></h1>
-    </header>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Galeri <?php echo $judul_custom; ?></h1>
+            <p>Jelajahi koleksi <?php echo strtolower($judul_custom); ?> khas Jawa Timur</p>
+        </div>
+    </section>
 
-    <div class="gallery-grid" id="galleryGrid">
-        <?php
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                <div class="gallery-card" data-title="<?php echo strtolower($row['name']); ?>"
-                    data-content="<?php echo strtolower(strip_tags($row['description'])); ?>">
-                    <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>">
-                    <div class="card-content">
-                        <h3><?php echo $row['name']; ?></h3>
-                        <p><?php
-                        $sentences = explode('.', $row['description']);
-                        echo isset($sentences[0]) ? $sentences[0] . '.' : '';
-                        if (isset($sentences[1]))
-                            echo ' ' . $sentences[1] . '.';
-                        ?></p>
-                        <a href="detail.php?id=<?php echo $row['id']; ?>">Baca</a>
+    <div class="container">
+        <div class="gallery-grid" id="galleryGrid">
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                $index = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $description = $row['description'];
+                    $sentences = preg_split('/(?<=[.!?])\s+/', $description, 3);
+                    $preview = isset($sentences[0]) ? $sentences[0] : '';
+                    if (isset($sentences[1])) {
+                        $preview .= ' ' . $sentences[1];
+                    }
+                    ?>
+                    <div class="gallery-card" 
+                         style="--index: <?php echo $index; ?>"
+                         data-title="<?php echo strtolower($row['name']); ?>"
+                         data-content="<?php echo strtolower(strip_tags($row['description'])); ?>">
+                        <div class="card-image-wrapper">
+                            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" loading="lazy">
+                            <div class="card-badge"><?php echo $judul_custom; ?></div>
+                        </div>
+                        <div class="card-content">
+                            <h3><?php echo htmlspecialchars($row['name']); ?></h3>
+                            <p><?php echo htmlspecialchars($preview); ?></p>
+                            <a href="detail.php?id=<?php echo $row['id']; ?>" class="card-button">Baca Selengkapnya</a>
+                        </div>
                     </div>
+                    <?php
+                    $index++;
+                }
+            } else {
+                ?>
+                <div class="empty-state">
+                    <h3>📭 Belum Ada Konten</h3>
+                    <p>Maaf, belum ada artikel di kategori <?php echo $judul_custom; ?> saat ini.</p>
+                    <a href="index.php" class="back-to-home">Kembali ke Beranda</a>
                 </div>
                 <?php
             }
-        } else {
-            echo "<p style='text-align:center; width:100%;'>Tidak ada artikel di kategori ini.</p>";
-        }
-        ?>
+            ?>
+        </div>
     </div>
 
     <footer class="footer">
@@ -344,33 +655,30 @@ $result = mysqli_query($koneksi, $sql);
             <div class="footer-section">
                 <h4>Swara Jatim</h4>
                 <p>Portal Budaya & Berita Jawa Timur</p>
-                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif
-                    dan edukatif untuk generasi mendatang.</p>
+                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif dan edukatif untuk generasi mendatang.</p>
             </div>
             <div class="footer-section">
-                <h4>Navigasi Cepat</h4>
-                <a href="#home">Beranda</a>
-                <a href="#galeri">Galeri</a>
-                <a href="#artikel">Artikel</a>
-                <a href="#ai-assistant">Swara Jatim AI</a>
-                <a href="#kontak">Kontak</a>
+                <h4>Navigasi</h4>
+                <a href="index.php">Beranda</a>
+                <a href="index.php#galeri">Galeri</a>
+                <a href="mini-game.php">Mini Game</a>
+                <a href="index.php#ai-assistant">AI Assistant</a>
             </div>
             <div class="footer-section">
-                <h4>Galeri Budaya</h4>
-                <a href="#">Wisata</a>
-                <a href="#">Kuliner</a>
-                <a href="#">Pakaian & Batik</a>
-                <a href="#">Tradisi</a>
+                <h4>Kategori</h4>
+                <a href="galeri.php?id=1">Wisata</a>
+                <a href="galeri.php?id=2">Kuliner</a>
+                <a href="galeri.php?id=3">Pakaian & Batik</a>
+                <a href="galeri.php?id=4">Tradisi</a>
             </div>
             <div class="footer-section">
-                <h4>Hubungi Kami</h4>
+                <h4>Kontak</h4>
                 <p>Email: info@swarajatim.com</p>
                 <p>Telepon: (031) 123-4567</p>
                 <div class="social-links">
                     <a href="#" title="Facebook">f</a>
-                    <a href="#" title="Twitter">t</a>
                     <a href="#" title="Instagram">i</a>
-                    <a href="#" title="YouTube">y</a>
+                    <a href="#" title="Twitter">t</a>
                 </div>
             </div>
         </div>
@@ -382,7 +690,6 @@ $result = mysqli_query($koneksi, $sql);
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
-            const clearButton = document.getElementById('clearSearch');
             const galleryGrid = document.getElementById('galleryGrid');
             const galleryCards = document.querySelectorAll('.gallery-card');
 
@@ -407,12 +714,12 @@ $result = mysqli_query($koneksi, $sql);
                     existingNoResults.remove();
                 }
 
-                if (visibleCount === 0 && searchTerm !== '') {
+                if (visibleCount === 0 && searchTerm !== '' && galleryCards.length > 0) {
                     const noResultsDiv = document.createElement('div');
                     noResultsDiv.className = 'no-results';
                     noResultsDiv.innerHTML = `
-                        <h3>Tidak ada hasil ditemukan</h3>
-                        <p>Coba gunakan kata kunci yang berbeda atau hapus pencarian untuk melihat semua artikel.</p>
+                        <h3>🔍 Tidak Ada Hasil</h3>
+                        <p>Coba gunakan kata kunci yang berbeda atau hapus pencarian Anda.</p>
                     `;
                     galleryGrid.appendChild(noResultsDiv);
                 }
@@ -425,19 +732,31 @@ $result = mysqli_query($koneksi, $sql);
             }
 
             searchInput.addEventListener('input', performSearch);
+            
             searchInput.addEventListener('keyup', function (e) {
                 if (e.key === 'Escape') {
                     clearSearch();
                 }
             });
 
-            clearButton.addEventListener('click', clearSearch);
-
+            // Keyboard shortcut
             document.addEventListener('keydown', function (e) {
                 if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                     e.preventDefault();
                     searchInput.focus();
                 }
+            });
+
+            // Card click navigation
+            galleryCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.tagName !== 'A') {
+                        const link = this.querySelector('.card-button');
+                        if (link) {
+                            window.location.href = link.href;
+                        }
+                    }
+                });
             });
         });
     </script>

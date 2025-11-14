@@ -18,191 +18,314 @@
             background-color: #f5f1e8;
             color: #333;
             line-height: 1.6;
-            background-color: #FFEAC5;
+            background-color: #F8E1B7;
         }
 
         /* Header */
         .header {
-            background-color: rgba(139, 69, 19, 0.9);
-            padding: 1rem 0;
+            background-color: var(--secondary);
+            padding: 1.2rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .header.scrolled {
-            background-color: rgba(139, 69, 19, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(44, 24, 16, 0.98);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            gap: 2rem;
         }
 
         .logo {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #FFE1AF;
+            background-clip: text;
+            text-decoration: none;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
         }
 
         .logo a {
             color: inherit;
             text-decoration: none;
-            cursor: pointer;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(232, 168, 99, 0.3);
+        }
+
+        .nav-menu-wrapper {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: none;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
-            align-items: center;
+            gap: 2.5rem;
+            margin: 0;
         }
 
         .nav-menu a {
-            color: white;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: #f5f1e8;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Added search functionality in header */
-        .search-container {
-            position: relative;
-            margin-left: 2rem;
-        }
-
-        .search-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            padding: 0.5rem 1rem;
             color: white;
-            width: 250px;
-            transition: all 0.3s ease;
         }
 
-        .search-box:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            width: 300px;
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
+        .burger-menu {
+            display: none;
+            flex-direction: column;
             background: none;
             border: none;
-            color: white;
             cursor: pointer;
-            padding: 0.3rem;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .search-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            max-height: 400px;
-            overflow-y: auto;
+            gap: 5px;
+            padding: 0.5rem;
             z-index: 1001;
-            display: none;
         }
 
-        .search-result-item {
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: background 0.3s;
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .search-result-item:hover {
-            background: #f9f9f9;
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
         }
 
-        .search-result-item:last-child {
-            border-bottom: none;
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .search-result-title {
-            font-weight: bold;
-            color: #8b4513;
-            margin-bottom: 0.5rem;
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        .search-result-desc {
-            color: #666;
-            font-size: 0.9rem;
+        /* Responsive burger menu for tablets and mobile -->
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 1.5rem;
+                gap: 1.5rem;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .search-container {
+                max-width: 250px;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-menu-wrapper {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(44, 24, 16, 0.98);
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 0;
+                width: 100%;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu-wrapper.active {
+                max-height: 500px;
+                padding: 1.5rem 0;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 2rem;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu a {
+                display: block;
+                font-size: 0.95rem;
+            }
+
+        }
+
+        @media (max-width: 640px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .burger-menu span {
+                width: 22px;
+                height: 2.5px;
+            }
+
+            .nav-menu-wrapper {
+                top: 65px;
+            }
+
+            .nav-menu {
+                padding: 0 1.5rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .burger-menu span {
+                width: 20px;
+                height: 2px;
+            }
+
+            .nav-menu-wrapper.active {
+                max-height: 400px;
+            }
+
+            .nav-menu {
+                padding: 0 1rem;
+            }
+
+            .nav-menu li {
+                padding: 0.8rem 0;
+            }
+
+        }
+
+        @media (max-width: 360px) {
+            .burger-menu {
+                display: flex;
+            }
+
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('uploads/background.jpeg');
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+                url('Jembatan-Nasional-Suramadu.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: bottom;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            overflow: hidden;
         }
 
+        /* Judul */
         .hero-content h1 {
-            font-size: 4.5rem;
+            font-size: 4.2rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            color: #000000;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
             animation: fadeInUp 1s ease-out;
+            font-weight: 700;
         }
 
+        /* Subjudul */
         .hero-content p {
-            font-size: 3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.55);
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
+        /* Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         /* Section Styles */
         .section {
             padding: 4rem 0;
@@ -230,174 +353,427 @@
         }
 
         /* Gallery Section */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* ===== CATEGORY SECTION ===== */
+        .category-section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--neutral-500);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(200, 90, 23, 0.1), rgba(232, 168, 99, 0.1));
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-card-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card-content h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-card-content p {
+            color: var(--neutral-500);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        /* Modern gallery with optimized spacing */
+        .gallery-section {
+            background: linear-gradient(135deg, #F8E1B7 0%, #fef5e7 100%);
+            padding: 3.5rem 3rem;
+            margin: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            max-width: 1400px;
+        }
+
+        .gallery-header {
+            margin-top: 40px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #994D1C;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .gallery-subtitle {
+            color: #8b5a2b;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* Modern grid with better spacing balance */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.8rem;
+            padding: 0;
         }
 
         .gallery-card {
-            position: relative;
+            background: white;
+            border-radius: 16px;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.03);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-direction: column;
+            height: 100%;
+            transform-origin: center;
         }
 
         .gallery-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
         }
 
-        .gallery-card img {
+        .gallery-image-wrapper {
             width: 100%;
-            height: 280px;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #e8d7c3, #f0e6d2);
+        }
+
+        .gallery-image-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            display: block;
-            border-radius: 20px;
-            transition: transform 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .gallery-card:hover img {
-            transform: scale(1.05);
+        .gallery-card:hover .gallery-image-wrapper img {
+            transform: scale(1.08);
         }
 
-        .gallery-card .gallery-title {
+        .gallery-badge {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 2.2rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-            margin: 0;
-            width: 100%;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            border-radius: 10px;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #c87a2b, #e8a863);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            box-shadow: 0 4px 12px rgba(200, 90, 23, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        /* AI Assistant Section */
+        .gallery-content {
+            padding: 1.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-content h3 {
+            color: #2c1810;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            line-height: 1.3;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gallery-content p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* AI Assistant Section - Modern gradient design with premium styling */
         .ai-assistant {
-            background: linear-gradient(135deg, #8b4513, #a0522d);
+            background: linear-gradient(135deg, #2c1810 0%, #5c3d2e 50%, #8b5a3c 100%);
             color: white;
-            padding: 3rem;
-            border-radius: 20px;
+            padding: 4rem 3rem;
+            border-radius: 24px;
             margin: 4rem 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-assistant::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(232, 168, 99, 0.1), transparent, rgba(200, 90, 23, 0.05));
+            pointer-events: none;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .ai-content {
+            position: relative;
+            z-index: 2;
         }
 
         .ai-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f5f1e8);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFE1AF, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
         .ai-content p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 0.3px;
         }
 
         .ai-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             margin-top: 2rem;
             flex-wrap: wrap;
         }
 
         .ai-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
             color: white;
-            border: 2px solid white;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
             padding: 1rem 2rem;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .ai-btn:hover::before {
+            left: 100%;
         }
 
         .ai-btn:hover {
-            background: white;
-            color: #8b4513;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(232, 168, 99, 0.15));
+            border-color: #FFE1AF;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(232, 168, 99, 0.3);
         }
 
         .chat-interface {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            height: 350px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 225, 183, 0.5));
+            border-radius: 20px;
+            padding: 2rem;
+            height: 380px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .chat-interface:hover {
-            transform: scale(1.02);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6);
         }
 
         .chat-header {
-            background: linear-gradient(135deg, #4a90e2, #357abd);
+            background: linear-gradient(135deg, #e8a863, #c87a2b);
             color: white;
-            padding: 1rem;
-            border-radius: 10px;
+            padding: 1.2rem;
+            border-radius: 14px;
             text-align: center;
-            margin-bottom: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(200, 90, 23, 0.2);
+        }
+
+        .chat-content-area {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(248, 225, 183, 0.3), rgba(255, 255, 255, 0.2));
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(44, 24, 16, 0.5);
+            font-style: italic;
+            font-size: 0.95rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1.5px dashed rgba(200, 90, 23, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .chat-interface:hover .chat-content-area {
+            border-color: rgba(200, 90, 23, 0.4);
+            background: linear-gradient(135deg, rgba(248, 225, 183, 0.5), rgba(255, 255, 255, 0.3));
         }
 
         .chat-input {
-            margin-top: auto;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .chat-input input {
             flex: 1;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
+            padding: 0.9rem 1rem;
+            border: 1.5px solid rgba(200, 90, 23, 0.2);
             border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: #333;
+            font-family: inherit;
         }
 
         .chat-input input:focus {
             outline: none;
-            border-color: #4a90e2;
+            border-color: #e8a863;
+            box-shadow: 0 0 12px rgba(232, 168, 99, 0.2);
         }
 
         .chat-input button {
-            background: #4a90e2;
+            background: linear-gradient(135deg, #e8a863, #c87a2b);
             color: white;
             border: none;
-            padding: 0.8rem 1rem;
+            padding: 0.9rem 1.2rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(200, 90, 23, 0.2);
         }
 
         .chat-input button:hover {
-            background: #357abd;
+            background: linear-gradient(135deg, #f0b968, #d4883a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(200, 90, 23, 0.3);
+        }
+
+        .chat-input button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* Content Grid */
@@ -452,76 +828,6 @@
             font-weight: 500;
         }
 
-        /* Article Cards */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .article-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .article-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .article-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .article-content {
-            padding: 2rem;
-        }
-
-        .article-content h4 {
-            color: #8b4513;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            line-height: 1.4;
-        }
-
-        .article-content p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .read-more {
-            background: linear-gradient(135deg, #8b4513, #a0522d);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .read-more:hover {
-            background: linear-gradient(135deg, #a0522d, #8b4513);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Added connection/contact section */
         .connection-section {
             background: linear-gradient(135deg, #2c1810, #3d2317);
             color: white;
@@ -588,7 +894,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer */
         .footer {
             background: linear-gradient(135deg, #2c1810, #1a0f0a);
             color: white;
@@ -663,7 +968,40 @@
             font-size: 1rem;
         }
 
-        /* Responsive */
+        /* Comprehensive responsive design for all breakpoints */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .ai-assistant {
+                padding: 3rem 2.5rem;
+                gap: 2.5rem;
+            }
+
+            .ai-content h3 {
+                font-size: 2.2rem;
+            }
+
+            .chat-interface {
+                height: 340px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -675,27 +1013,42 @@
 
             .ai-assistant {
                 grid-template-columns: 1fr;
+                padding: 2.5rem 2rem;
+                gap: 2rem;
             }
 
-            .nav-menu {
+            .ai-content h3 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            .ai-content p {
+                font-size: 0.95rem;
+                text-align: center;
+            }
+
+            .ai-buttons {
+                justify-content: center;
                 gap: 1rem;
             }
 
+            .chat-interface {
+                height: auto;
+                min-height: 300px;
+            }
+
+            .nav-menu {
+                gap: 1.2rem;
+                font-size: 0.9rem;
+            }
+
             .section {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding: 3rem 1.5rem;
+                margin-bottom: 3rem;
             }
 
             .search-container {
-                margin-left: 1rem;
-            }
-
-            .search-box {
-                width: 200px;
-            }
-
-            .search-box:focus {
-                width: 220px;
+                max-width: 250px;
             }
 
             .nav-container {
@@ -706,22 +1059,393 @@
             .connection-container {
                 grid-template-columns: 1fr;
             }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.2rem;
+            }
+
+            .gallery-section {
+                padding: 2.5rem 2rem;
+                margin: 2rem auto;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+            }
+
+            .gallery-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin: 2rem 0.5rem;
+            }
+
+            .content-grid {
+                gap: 1.5rem;
+                padding: 10px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
-        /* Added smooth scrolling and loading animations */
-        html {
-            scroll-behavior: smooth;
+        @media (max-width: 640px) {
+            .ai-assistant {
+                padding: 2rem 1.5rem;
+                gap: 1.5rem;
+                border-radius: 16px;
+            }
+
+            .ai-content h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .ai-content p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .ai-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+                margin-top: 1.5rem;
+            }
+
+            .ai-btn {
+                width: 100%;
+                padding: 0.85rem 1.5rem;
+                font-size: 0.85rem;
+                letter-spacing: 0.5px;
+            }
+
+            .chat-interface {
+                height: 280px;
+                padding: 1.5rem;
+            }
+
+            .chat-header {
+                font-size: 1rem;
+                padding: 0.9rem;
+                margin-bottom: 0.9rem;
+            }
+
+            .chat-content-area {
+                font-size: 0.9rem;
+                padding: 0.9rem;
+                margin-bottom: 0.9rem;
+            }
+
+            .chat-input input {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .chat-input button {
+                padding: 0.7rem 0.9rem;
+                font-size: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-image-wrapper {
+                height: 180px;
+            }
+
+            .gallery-content {
+                padding: 1.2rem;
+            }
+
+            .gallery-content h3 {
+                font-size: 1rem;
+            }
+
+            .gallery-title {
+                font-size: 1.6rem;
+            }
+
+            .gallery-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-menu {
+                gap: 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .search-container {
+                max-width: 100%;
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+                gap: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+                margin: 1.5rem 0.5rem;
+            }
+
+            .content-grid {
+                gap: 0.8rem;
+                padding: 8px;
+            }
+
+            .connection-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
         }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        @media (max-width: 480px) {
+            .ai-assistant {
+                padding: 1.5rem 1rem;
+                gap: 1.5rem;
+                margin: 2rem 0;
+                border-radius: 12px;
+            }
+
+            .ai-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .ai-content p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .ai-buttons {
+                flex-direction: column;
+                gap: 0.6rem;
+                margin-top: 1rem;
+            }
+
+            .ai-btn {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                font-size: 0.8rem;
+                letter-spacing: 0px;
+                border-radius: 20px;
+            }
+
+            .chat-interface {
+                height: 260px;
+                padding: 1rem;
+            }
+
+            .chat-header {
+                font-size: 0.95rem;
+                padding: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .chat-content-area {
+                font-size: 0.85rem;
+                padding: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .chat-input {
+                gap: 0.4rem;
+            }
+
+            .chat-input input {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .chat-input button {
+                padding: 0.6rem 0.7rem;
+                font-size: 0.95rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                gap: 0.6rem;
+                font-size: 0.75rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-image-wrapper {
+                height: 160px;
+            }
+
+            .gallery-title {
+                font-size: 1.4rem;
+            }
+
+            .gallery-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .gallery-section {
+                padding: 1.5rem 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .gallery-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                letter-spacing: 0px;
+                margin: 1rem 0.5rem;
+            }
+
+            .content-grid {
+                gap: 0.8rem;
+                padding: 8px;
+            }
+
+            .content-card {
+                min-width: 100%;
+            }
+
+            .connection-container {
+                gap: 1rem;
+                padding: 0 0.8rem;
+            }
+
+            .footer-content {
+                gap: 1rem;
+                padding: 0 0.8rem;
+            }
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 360px) {
+            .ai-assistant {
+                padding: 1rem 0.8rem;
+                gap: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .ai-content h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .ai-content p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .ai-btn {
+                font-size: 0.75rem;
+                padding: 0.7rem 0.9rem;
+            }
+
+            .chat-interface {
+                height: 240px;
+                padding: 0.8rem;
+            }
+
+            .chat-header {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+            }
+
+            .chat-content-area {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+            }
+
+            .chat-input input {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .chat-input button {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .logo {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                gap: 0.8rem;
+            }
+
+            .gallery-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-subtitle {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -730,22 +1454,27 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo"><a href="index.php">Swara Jatim</a></div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#galeri">Galeri</a></li>
-                    <li><a href="#ai-assistant">Swara Jatim AI</a></li>
-                    <li><a href="#artikel">Artikel</a></li>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="Cari artikel...">
+            </div>
+
+            <!-- Added burger menu icon for mobile -->
+            <button class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Nav menu now has mobile toggle functionality -->
+            <nav class="nav-menu-wrapper">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="index.php#galeri">Galeri</a></li>
+                    <li><a href="index.php#ai-assistant">Swara Jatim AI</a></li>
                     <li><a href="mini-game.php">Mini Game</a></li>
                 </ul>
             </nav>
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="Cari budaya, kuliner, tradisi..." id="searchInput">
-                <button class="search-btn" onclick="performSearch()">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div class="search-results" id="searchResults"></div>
-            </div>
         </div>
     </header>
 
@@ -756,8 +1485,13 @@
         </div>
     </section>
 
-    <section id="galeri" class="section fade-in">
-        <h2 class="section-title">Galeri</h2>
+    <!-- Gallery Section -->
+    <section id="galeri" class="gallery-section">
+        <div class="gallery-header">
+            <h2 class="gallery-title">Galeri Terbaru</h2>
+            <p class="gallery-subtitle">Jelajahi koleksi gambar terbaru dari setiap kategori</p>
+        </div>
+
         <div class="gallery-grid">
             <?php
             include "koneksi.php";
@@ -777,11 +1511,15 @@
 
                 if ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                    <a href="galeri.php?id=<?php echo $cat_id; ?>" class="gallery-link">
+                    <a href="galeri.php?id=<?php echo $cat_id; ?>" class="gallery-link" style="text-decoration: none;">
                         <div class="gallery-card">
-                            <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $judul_custom; ?>">
-                            <div class="overlay">
-                                <h3 class="gallery-title"><?php echo 'Galeri ' . $judul_custom; ?></h3>
+                            <div class="gallery-image-wrapper">
+                                <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $judul_custom; ?>">
+                                <span class="gallery-badge"><?php echo $judul_custom; ?></span>
+                            </div>
+                            <div class="gallery-content">
+                                <h3><?php echo 'Galeri ' . $judul_custom; ?></h3>
+                                <p><?php echo isset($row['description']) ? substr($row['description'], 0, 100) . '...' : 'Jelajahi koleksi ' . $judul_custom . ' terbaru kami'; ?></p>
                             </div>
                         </div>
                     </a>
@@ -792,32 +1530,26 @@
         </div>
     </section>
 
+    <!-- Modern AI Assistant section with updated markup -->
     <section id="ai-assistant" class="section fade-in">
         <div class="ai-assistant">
             <div class="ai-content">
-                <h3>AI Cultural Assistant</h3>
-                <p>Jelajahi budaya Jawa Timur dengan bantuan AI Cultural Assistant. Cukup tanyakan atau kirimkan
-                    minuman, dan dapatkan cerdas ini akan memberikan informasi, cerita, dan rekomendasi seputar seni,
-                    tradisi, dan budaya lokal.</p>
+                <h3>🤖 AI Cultural Assistant</h3>
+                <p>Jelajahi budaya Jawa Timur dengan bantuan AI Cultural Assistant. Cukup tanyakan atau kirimkan gambar, dan AI cerdas ini akan memberikan informasi, cerita, dan rekomendasi seputar seni, tradisi, dan budaya lokal dengan cara yang interaktif dan menarik.</p>
                 <div class="ai-buttons">
                     <button class="ai-btn" onclick="window.location.href='budaya-chatbot/index.php'">
-                        Buka Chatbot Budaya
-                    </button>
-                    <button class="ai-btn" onclick="window.location.href='budaya-chatbot/index.php'">
-                        Tanya AI Budaya
+                        Tanya AI
                     </button>
                 </div>
             </div>
             <div class="chat-interface" onclick="window.location.href='budaya-chatbot/index.php'">
-                <div class="chat-header">🤖 Swara Jatim AI</div>
-                <div
-                    style="flex: 1; background: #f9f9f9; border-radius: 10px; margin-bottom: 1rem; display:flex; align-items:center; justify-content:center; color:#999; font-style: italic;">
+                <div class="chat-header">✨ Mulai Percakapan</div>
+                <div class="chat-content-area">
                     Klik untuk memulai percakapan dengan AI Budaya
                 </div>
                 <div class="chat-input">
-                    <input type="text" placeholder="Ketik pesan..." readonly>
-                    <button disabled>📎</button>
-                    <button disabled>➤</button>
+                    <input type="text" placeholder="Ketik pertanyaan..." readonly>
+                    <button disabled>🚀</button>
                 </div>
             </div>
         </div>
@@ -833,33 +1565,6 @@
                 FROM konten k
                 LEFT JOIN cities c ON k.city_id = c.id
                 WHERE k.category_id = 1
-                ORDER BY k.id DESC
-            ");
-
-            while ($row = mysqli_fetch_assoc($res)) {
-                echo "
-                <div class='content-card'>
-                    <img src='{$row['image_url']}' alt='{$row['name']}' height='200' width='280'>
-                    <div class='card-content'>
-                        <h4>{$row['name']}</h4>
-                        <p>{$row['city_name']}</p>
-                    </div>
-                </div>
-                ";
-            }
-            ?>
-        </div>
-    </section>
-    <section class="section fade-in">
-        <h2 class="section-title">Kuliner</h2>
-        <div class="content-grid">
-            <?php
-            include 'koneksi.php';
-            $res = mysqli_query($koneksi, "
-                SELECT k.*, c.name AS city_name
-                FROM konten k
-                LEFT JOIN cities c ON k.city_id = c.id
-                WHERE k.category_id = 2
                 ORDER BY k.id DESC
             ");
 
@@ -934,89 +1639,35 @@
         </div>
     </section>
 
-    <section id="artikel" class="section fade-in">
-        <h2 class="section-title">Artikel</h2>
-        <div class="article-grid">
-            <article class="article-card">
-                <img src="https://akcdn.detik.net.id/community/media/visual/2023/06/24/atraksi-reog-ponorogo-di-bulan-bung-karno-2023_169.jpeg?w=700&q=90"
-                    alt="Budaya Jawa Timur">
-                <div class="article-content">
-                    <h4>6 Budaya Jawa Timur yang Tradisi Unik dan Menarik untuk Dikunjungi Dunia</h4>
-                    <p>Jawa Timur memiliki kekayaan budaya yang sangat beragam, mulai dari tarian tradisional hingga
-                        kuliner khas yang menggugah selera...</p>
-                    <a href="https://www.detik.com/jatim/budaya/d-7000628/6-budaya-dan-tradisi-jawa-timur-yang-dikagumi-dunia"
-                        target="_blank" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="https://ik.imagekit.io/tvlk/blog/2024/07/shutterstock_693386485.jpg?tr=q-70,c-at_max,w-500,h-250,dpr-2"
-                    alt="Wisata Tradisional">
-                <div class="article-content">
-                    <h4>10 Tradisi Jawa Timur, Wisata Budaya yang Wajib Dikunjungi Tidak Boleh Dilewatkan</h4>
-                    <p>Destinasi wisata budaya di Jawa Timur menawarkan pengalaman yang tak terlupakan dengan berbagai
-                        tradisi yang masih lestari...</p>
-                    <a href="https://www.traveloka.com/id-id/explore/destination/tradisi-jawa-timur-acc/386150"
-                        target="_blank" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="https://storage.nu.or.id/storage/post/16_9/mid/image-5_1733573868.webp"
-                    alt="Pelestarian Budaya">
-                <div class="article-content">
-                    <h4>Memahami Kepentingan Melestarikan Adat Jawa Timur untuk Generasi Masa Depan</h4>
-                    <p>Pelestarian budaya Jawa Timur menjadi tanggung jawab bersama untuk memastikan warisan leluhur
-                        tetap hidup di era modern...</p>
-                    <a href="https://jatim.nu.or.id/opini/pendidikan-melalui-budaya-jawa-merawat-warisan-luhur-untuk-generasi-emas-PDYm7"
-                        target="_blank" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-            <article class="article-card">
-                <img src="https://akcdn.detik.net.id/community/media/visual/2016/11/18/8c911676-edbd-4db1-8e98-383335a96640_169.jpg?w=700&q=90"
-                    alt="Kearifan Lokal">
-                <div class="article-content">
-                    <h4>Contoh Kearifan Lokal di Jawa Timur dalam Tradisi dan Kuliner</h4>
-                    <p>Kearifan lokal Jawa Timur tercermin dalam berbagai aspek kehidupan, mulai dari sistem pertanian
-                        hingga filosofi hidup...</p>
-                    <a href="https://www.detik.com/jatim/kuliner/d-7322091/10-kuliner-jawa-timur-jadi-warisan-budaya-takbenda"
-                        target="_blank" class="read-more">Baca Selengkapnya</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Swara Jatim</h4>
                 <p>Portal Budaya & Berita Jawa Timur</p>
-                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif
-                    dan edukatif untuk generasi mendatang.</p>
+                <p>Melestarikan dan mempromosikan kekayaan budaya Jawa Timur melalui platform digital yang informatif dan edukatif untuk generasi mendatang.</p>
             </div>
             <div class="footer-section">
-                <h4>Navigasi Cepat</h4>
-                <a href="#home">Beranda</a>
-                <a href="#galeri">Galeri</a>
-                <a href="#artikel">Artikel</a>
-                <a href="#ai-assistant">Swara Jatim AI</a>
-                <a href="#koneksi">Koneksi</a>
+                <h4>Navigasi</h4>
+                <a href="index.php">Beranda</a>
+                <a href="index.php#galeri">Galeri</a>
+                <a href="mini-game.php">Mini Game</a>
+                <a href="index.php#ai-assistant">AI Assistant</a>
             </div>
             <div class="footer-section">
-                <h4>Galeri Budaya</h4>
-                <a href="#">Kuliner</a>
-                <a href="#">Pakaian & Batik</a>
-                <a href="#">Kesenian</a>
-                <a href="#">Tradisi</a>
+                <h4>Kategori</h4>
+                <a href="galeri.php?id=1">Wisata</a>
+                <a href="galeri.php?id=2">Kuliner</a>
+                <a href="galeri.php?id=3">Pakaian & Batik</a>
+                <a href="galeri.php?id=4">Tradisi</a>
             </div>
             <div class="footer-section">
-                <h4>Hubungi Kami</h4>
+                <h4>Kontak</h4>
                 <p>Email: info@swarajatim.com</p>
                 <p>Telepon: (031) 123-4567</p>
-                <p>WhatsApp: +62 812-3456-7890</p>
                 <div class="social-links">
                     <a href="#" title="Facebook">f</a>
-                    <a href="#" title="Twitter">t</a>
                     <a href="#" title="Instagram">i</a>
-                    <a href="#" title="YouTube">y</a>
+                    <a href="#" title="Twitter">t</a>
                 </div>
             </div>
         </div>
@@ -1026,121 +1677,29 @@
     </footer>
 
     <script>
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        burgerMenu.addEventListener('click', () => {
+            navMenu.parentElement.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
         });
 
-        const searchData = [
-            { title: 'Kuliner Jawa Timur', desc: 'Temukan berbagai makanan khas Jawa Timur seperti rawon, rujak cingur, dan lontong balap', url: '#kuliner' },
-            { title: 'Batik dan Pakaian Tradisional', desc: 'Jelajahi keindahan batik Madura, lurik, dan pakaian adat Jawa Timur', url: '#pakaian' },
-            { title: 'Tradisi dan Upacara Adat', desc: 'Pelajari berbagai tradisi seperti Reog Ponorogo, Kerapan Sapi, dan upacara adat lainnya', url: '#tradisi' },
-            { title: 'AI Cultural Assistant', desc: 'Gunakan AI untuk mempelajari budaya Jawa Timur dengan cara yang interaktif', url: '#ai-assistant' },
-            { title: 'Galeri Budaya', desc: 'Lihat koleksi foto dan dokumentasi budaya Jawa Timur', url: '#galeri' },
-            { title: 'Artikel Budaya', desc: 'Baca artikel mendalam tentang sejarah dan perkembangan budaya Jawa Timur', url: '#artikel' }
-        ];
-
-        function performSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            const query = searchInput.value.toLowerCase().trim();
-
-            if (query.length === 0) {
-                searchResults.style.display = 'none';
-                return;
-            }
-
-            const filteredResults = searchData.filter(item =>
-                item.title.toLowerCase().includes(query) ||
-                item.desc.toLowerCase().includes(query)
-            );
-
-            if (filteredResults.length > 0) {
-                searchResults.innerHTML = filteredResults.map(item => `
-                    <div class="search-result-item" onclick="navigateToResult('${item.url}')">
-                        <div class="search-result-title">${item.title}</div>
-                        <div class="search-result-desc">${item.desc}</div>
-                    </div>
-                `).join('');
-                searchResults.style.display = 'block';
-            } else {
-                searchResults.innerHTML = `
-                    <div class="search-result-item">
-                        <div class="search-result-title">Tidak ditemukan</div>
-                        <div class="search-result-desc">Coba kata kunci lain seperti "kuliner", "batik", atau "tradisi"</div>
-                    </div>
-                `;
-                searchResults.style.display = 'block';
-            }
-        }
-
-        function navigateToResult(url) {
-            document.getElementById('searchResults').style.display = 'none';
-            document.getElementById('searchInput').value = '';
-
-            if (url.startsWith('#')) {
-                document.querySelector(url).scrollIntoView({ behavior: 'smooth' });
-            } else {
-                window.location.href = url;
-            }
-        }
-
-        document.getElementById('searchInput').addEventListener('input', performSearch);
-        document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-
-        document.addEventListener('click', function (e) {
-            const searchContainer = document.querySelector('.search-container');
-            if (!searchContainer.contains(e.target)) {
-                document.getElementById('searchResults').style.display = 'none';
-            }
-        });
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.parentElement.classList.remove('active');
+                burgerMenu.classList.remove('active');
             });
         });
 
-
-        window.addEventListener('load', function () {
-            document.body.style.opacity = '1';
-            document.querySelectorAll('.fade-in').forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('visible');
-                }, index * 200);
-            });
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navMenu.parentElement.classList.remove('active');
+                burgerMenu.classList.remove('active');
+            }
         });
     </script>
 </body>
