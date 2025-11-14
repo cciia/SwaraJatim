@@ -296,8 +296,8 @@ if ($id > 0) {
                         <nav>
                             <ul class="nav-menu">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="index.php #galeri">Galeri</a></li>
-                                <li><a href="index.php #ai-assistant">Swara Jatim AI</a></li>
+                                <li><a href="index.php#galeri">Galeri</a></li>
+                                <li><a href="index.php#ai-assistant">Swara Jatim AI</a></li>
                                 <li><a href="mini-game.php">Mini Game</a></li>
                             </ul>
                         </nav>
